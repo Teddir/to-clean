@@ -11,6 +11,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.textResponsive {
+  @apply lg:text-[18px] md:text-[16px] text-[22px]
+}
+
+.textButton {
+  @apply lg:text-[18px] md:text-[16px] text-[14px]
+}
+
+.textJudul {
+  @apply font-bold lg:text-[20px] md:text-[16px] text-[24px]
+}
+
+.textDesc {
+  @apply opacity-80 lg:text-[18px] md:text-[14px] text-[20px]
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

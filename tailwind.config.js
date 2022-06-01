@@ -15,7 +15,8 @@ module.exports = {
         'colorButton': "#12141E",
         'backgroundWeb':"#E5E5E5",
         'border':"#4A4A55",
-        'blueMuda': "#E7ECFC"
+        'blueMuda': "#E7ECFC",
+        'backgroundUploadImage': "#444444"
       },
       container: {
         padding: '1rem',

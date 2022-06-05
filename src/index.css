@@ -12,22 +12,39 @@ body {
 }
 
 .textResponsive {
-  @apply lg:text-[18px] md:text-[16px] text-[22px]
+  @apply lg:text-[18px] md:text-[16px] xs:text-[14px] text-[22px]
 }
 
 .textButton {
-  @apply lg:text-[18px] md:text-[16px] text-[14px]
+  @apply lg:text-[18px] md:text-[16px] xs:text-[12px] text-[14px]
 }
 
 .textJudul {
-  @apply font-bold lg:text-[20px] md:text-[16px] text-[24px]
+  @apply font-bold xl:text-[44px] lg:text-[20px] md:text-[16px] xs:text-[32px] text-[24px]
 }
 
 .textDesc {
-  @apply opacity-80 lg:text-[18px] md:text-[14px] text-[20px]
+  @apply opacity-80 lg:text-[18px] md:text-[14px] xs:text-[12px] text-[18px]
+}
+
+.role-active {
+  @apply shadow-md hover:shadow-none text-purple-500 border-purple-400
+}
+
+.form-active {
+  @apply border-border
+}
+
+.form-error {
+  @apply border-red-500
+}
+
+.form-default {
+  @apply border-border border-opacity-50
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+

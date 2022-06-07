@@ -1,29 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
-import Button from './components/theme';
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+// import Beranda from "./private/Beranda";
+import Start from "./private/Start";
+import Finish from "./private/user/Finish";
+import StepOne from "./private/user/StepOne";
+import StepTwo from "./private/user/StepTwo";
+import Landing from "./private/landing";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <h1 className="text-3xl font-bold underline">
-          Hello world!
-        </h1>
-        <Button texts="hallo teddi"/>
-      </header>
-    </div>
+    <BrowserRouter>
+      {/* <Beranda/>
+      <App /> */}
+      <Routes>
+      <Route path="/" element={<Landing />} />
+      {/* <Route path="/" element={<Beranda />} /> */}
+      <Route path="start" element={<Start />} />
+      <Route path="stepone" element={<StepOne />} />
+      <Route path="steptwo" element={<StepTwo />} />
+      <Route path="finish" element={<Finish />} />
+    </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.hide-scroll-bar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scroll-bar::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -16,15 +24,15 @@ body {
 }
 
 .textButton {
-  @apply lg:text-[18px] md:text-[16px] xs:text-[12px] text-[14px]
+  @apply lg:text-[18px] md:text-[16px] xs:text-[16px] text-[14px]
 }
 
 .textJudul {
-  @apply font-bold xl:text-[44px] lg:text-[20px] md:text-[16px] xs:text-[32px] text-[24px]
+  @apply font-bold xl:text-[44px] lg:text-[20px] md:text-[42px] xs:text-[32px] text-[24px]
 }
 
 .textDesc {
-  @apply opacity-80 lg:text-[18px] md:text-[14px] xs:text-[12px] text-[18px]
+  @apply opacity-80 lg:text-[18px] md:text-[14px] xs:text-[16px] text-[18px]
 }
 
 .role-active {

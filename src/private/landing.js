@@ -24,7 +24,7 @@ export default function Landing() {
                   </span>
                   &nbsp;your Place with ikhlas!!
                 </blockquote>
-                <h4 className="text-white-icon text-center mt-6 lg:leading-8 xl:text-[18px] lg:text-[20px] md:text-[18px] text-[12px] sm:text-[20x] xs:text-[12px]">
+                <h4 className="text-white-icon text-center mt-6 lg:leading-8 xl:text-[18px] lg:text-[20px] md:text-[18px] text-[14px] sm:text-[20x] ">
                 Protonn was a great product idea which raised $9mln in 2021. Directed to professionals in free professions <br className="hidden"/> to help grow  business and attract clients through engaging video content <br className="hidden"/> and simplify business operations. 
                 </h4>
               </div>

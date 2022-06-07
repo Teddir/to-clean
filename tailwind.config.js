@@ -5,9 +5,9 @@ module.exports = {
   ],
   theme: {
     screens: {
-      'xss': {'min': '100px', 'max': '343px'},
-      'xs': {'min': '300px', 'max': '520px'},
-      'smm': {'min': '520px', 'max': '767px'},
+      'xss': {'min': '100px', 'max': '360px'},
+      'xs': {'min': '360px', 'max': '635px'},
+      'smm': {'min': '520px', 'max': '886px'},
       ...defaultTheme.screens,
     },
     extend: {

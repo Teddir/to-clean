@@ -1,8 +1,9 @@
 import React from "react";
 import logo from "../src/image/logo.svg"
-// import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Start() {
+  const navigation = useNavigate()
   const [myRole, setMyRole] = React.useState('');
 
   const handleClick = (role) => {
@@ -23,9 +24,9 @@ function Start() {
   const handleSubmit = () => {
     if (myRole !== '') {
       if (myRole === 'user') {
-        window.open('/stepone', '_self')
+        navigation('/user/login', {replace: true})
       } else {
-        alert('Maaf anda bukan admin ygy')
+        navigation('/admin/login', {replace: true});
       }
     } else {
       alert('pilih role anda terlebih dahulu')
@@ -104,7 +105,8 @@ function Start() {
           </div>
           <div className="bottom-0 xl:mt-[8rem] py-6 mt-[6rem] md:mt-[4rem]">
             <div className="xs:block flex justify-between relative">
-              <div className="xs:mb-4 py-5 px-10 rounded-md justify-center items-center flex cursor-default border-2 border-trans1 border-opacity-10" onClick={() => {window.open("/", "_self")}}>
+              <div className="xs:mb-4 py-5 px-10 rounded-md justify-center items-center flex cursor-default border-2 border-trans1 border-opacity-10" onClick={() => navigation('/', {replace: true})
+              }>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 stroke-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path d="M7 16l-4-4m0 0l4-4m-4 4h18"   />
                 </svg>

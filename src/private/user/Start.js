@@ -1,7 +1,9 @@
 import React from "react";
 import logo from "../../src/image/logo.svg"
+import { useNavigate } from "react-router-dom";
 
-function StepTwo() {
+function Start() {
+  const navigation = useNavigate()
   const [listCardImage, setListCardImage] = React.useState([
     {
       no:1,
@@ -189,11 +191,11 @@ function StepTwo() {
         {/* start button */}
         <div className="bottom-0 lg:mt-24 py-6">
           <div className="xs:block flex justify-between relative lg:ml-32 ml-12 mr-12 mt-8 lg:mt-4 pb-12">
-          <div className="xs:mb-4 py-5 px-10 rounded-md justify-center items-center flex cursor-pointer border-2 border-trans1 border-opacity-10" onClick={() => {window.open("/start", "_self")}}>
+          <div className="xs:mb-4 py-5 px-10 rounded-md justify-center items-center flex cursor-pointer border-2 border-trans1 border-opacity-10" onClick={() => navigation("/user/start", {})}>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 stroke-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path d="M7 16l-4-4m0 0l4-4m-4 4h18"   />
               </svg>
-              <a href="/stepone" className="text-center font-bold text-[16px] textButton">&nbsp;Kembali</a>
+              <span className="text-center font-bold text-[16px] textButton">&nbsp;Kembali</span>
             </div>
             <div className="bg-trans1 py-5 px-12 rounded-md justify-center items-center flex cursor-pointer" onClick={() => handleSubmit()}>
               <span className="text-white text-center font-bold text-[16px] textButton" onClick={() => window.open("/finish", "_self")}>Lanjutkan</span>
@@ -207,4 +209,4 @@ function StepTwo() {
   )
 }
 
-export default StepTwo
+export default Start

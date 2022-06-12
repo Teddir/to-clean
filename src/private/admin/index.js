@@ -1,11 +1,13 @@
 import React from "react";
+import { auth } from "../../components/firebase/FirebaseProvider";
 import logo from "../../src/image/logo.svg"
+import { useNavigate } from "react-router-dom"
 
-function StepOne() {
+function index() {
+  const navigation = useNavigate()
   const [datas, setDatas] = React.useState({
     data : {
-      name: "",
-      departement: "",
+      email: "",
       password: "",
     },
     errortype: {},
@@ -22,18 +24,17 @@ function StepOne() {
   }
   
   const validate = () => {
-    const name = document.getElementById("name")
+    const email = document.getElementById("email")
     const password = document.getElementById("password")
-    const departement = document.getElementById("departement")
 
     let newErrors = {}
     // event.preventDefault();
-    if (!datas.data.name) {
-      newErrors.name = '*Nama Wajib Diisi'
-      name.classList.add("form-error");
+    if (!datas.data.email) {
+      newErrors.email = '*Nama Wajib Diisi'
+      email.classList.add("form-error");
     } else {
-      name.classList.remove("form-error");
-      name.classList.add("form-active");
+      email.classList.remove("form-error");
+      email.classList.add("form-active");
     }
     if (!datas.data.password) {
       newErrors.password = '*Password Wajib Diisi'
@@ -42,28 +43,29 @@ function StepOne() {
       password.classList.remove("form-error");
       password.classList.add("form-active");
     }
-    if (!datas.data.departement) {
-      newErrors.departement = '*Departement Wajib Diisi'
-      departement.classList.add("form-error");
-    } else {
-      departement.classList.remove("form-error");
-      departement.classList.add("form-active");
-    }
 
     return newErrors
   }
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const errortype = validate();
 
     if (Object.values(errortype).some((message) => message !== "")) {
       setDatas({...datas, errortype});
     } else {
       setDatas({...datas, errortype});
-      window.open("/steptwo", "_self")  
+      try {
+        await auth.signInWithEmailAndPassword(datas.data.email, datas.data.password)
+        navigation('/admin/beranda', {replace: true})
+      } catch (error) {
+        console.log(error);
+        datas.errortype.password = error.message
+
+      }
     }
   }
 
   // console.log(datas)
+
   return (
     <div className="max-w-full min-h-screen flex bg-backgroundWeb">
       {/* start body1 */}
@@ -78,17 +80,7 @@ function StepOne() {
             <div className="h-[50%] cursor-default">
               <div className="pb-8">
                 <div className="p-4 bg-backgroundWeb w-[90%] flex justify-center items-center rounded-md drop-shadow-lg">
-                  <span className="text-primary font-bold textResponsive">Proses 1</span>
-                </div>
-              </div>
-              <div className="pb-8">
-                <div className="border-2 border-white opacity-10 p-4 bg-transparent w-[90%] flex justify-center items-center rounded-md">
-                  <span className="text-white font-bold textResponsive">Proses 2</span>
-                </div>
-              </div>
-              <div className="pb-8">
-                <div className="border-2 border-white opacity-10 p-4 bg-transparent w-[90%] flex justify-center items-center rounded-md">
-                  <span className="text-white font-bold textResponsive">Finish</span>
+                  <span className="text-primary font-bold textResponsive">Login</span>
                 </div>
               </div>
             </div>
@@ -113,7 +105,7 @@ function StepOne() {
           </div>
           {/* end nav */}
           {/* start body */}
-          <div className="w-[90%] mt-24 lg:mt-18">
+          <div className="w-[90%] mt-[3rem] lg:mt-18">
             <div className="block md:hidden">
               <div className="flex">
                 <div className="w-[6rem] h-[12px] bg-trans1 opacity-60" />
@@ -121,7 +113,7 @@ function StepOne() {
                 <div className="w-[6rem] h-[12px] border-[1px] border-border opacity-40" />
               </div>
             </div>
-            <div className="pt-8 md:pt-0">
+            <div className="pt-4 md:pt-0">
               <span className="textJudul">Lengkapi data dengan benar okey.</span>
             </div>
             <div className="mt-2 lg:w-[70%]">
@@ -135,32 +127,18 @@ function StepOne() {
               <form>
                 <div className="xl:flex">
                   <div className="mb-8">
-                    <span className="text-[16px] lg:text-[18px] font-[500] font-sans">Name</span><br/>
-                    <input className="lg:w-[24rem] md:w-[24rem] w-[20rem] text-[16px] text-trans3 h-16 mt-2 bg-backgroundWeb border-2 border-border rounded-md pl-4 border-opacity-30 focus:ring-trans1 focus:ring-1 focus:outline-none focus:border-trans1 focus:border-opacity-50" placeholder="Teddi Rahman" type={"text"} required onChange={handleChange('name')} id="name"/>
+                    <span className="text-[16px] lg:text-[18px] font-[500] font-sans">Email / phone</span><br/>
+                    <input className="lg:w-[24rem] md:w-[24rem] w-[20rem] text-[16px] text-trans3 h-16 mt-2 bg-backgroundWeb border-2 border-border rounded-md pl-4 border-opacity-30 focus:ring-trans1 focus:ring-1 focus:outline-none focus:border-trans1 focus:border-opacity-50" placeholder="Teddi Rahman" type={"email"} required onChange={handleChange('email')} id="email"/>
                     <div className="mt-2 text-red-400 font-semibold">
-                      <span>{datas?.errortype?.name}</span>
+                      <span>{datas?.errortype?.email}</span>
                     </div>
                   </div>
                   <div className="mb-8 xl:mb-8 xl:ml-24">
-                    <span className="text-[16px] xl:text-[18px] font-[500] font-sans">Departement</span><br/>
-                    <select className="lg:w-[24rem] md:w-[24rem] w-[20rem] appearance-none text-[16px] text-trans3 h-16 mt-2 bg-backgroundWeb border-2 border-border rounded-md px-4 border-opacity-30 focus:ring-trans1 focus:ring-1 focus:outline-none focus:border-trans1 focus:border-opacity-50" placeholder="Marketing" required onChange={handleChange('departement')} id="departement">
-                      <option className="font-bold" value={""}>Pilih Departement</option>
-                      {[{no:0, name:"IT"},{no:1, name:"R&D"},{no:3, name:"Markom"},{no:4, name:"Selles"},{no:5, name:"WereHouse"},].map((data, index) => {
-                        return (
-                          <option key={index} value={data.name}>{data.name}</option>
-                        )
-                      })}
-                    </select>
+                    <span className="text-[16px] lg:text-[18px] font-[500] font-sans">Password</span><br/>
+                    <input className="lg:w-[24rem] md:w-[24rem] w-[20rem] text-[16px] text-trans3 h-16 mt-2 bg-backgroundWeb border-2 border-border rounded-md px-4 border-opacity-30 focus:ring-trans1 focus:ring-1 focus:outline-none focus:border-trans1 focus:border-opacity-50" placeholder="*********" type={"password"} required onChange={handleChange('password')} id="password"/>
                     <div className="mt-2 text-red-400 font-semibold">
-                      <span>{datas?.errortype?.departement}</span>
+                      <span>{datas?.errortype?.password}</span>
                     </div>
-                  </div>
-                </div>
-                <div className="mb-8">
-                  <span className="text-[16px] lg:text-[18px] font-[500] font-sans">Password</span><br/>
-                  <input className="lg:w-[24rem] md:w-[24rem] w-[20rem] text-[16px] text-trans3 h-16 mt-2 bg-backgroundWeb border-2 border-border rounded-md px-4 border-opacity-30 focus:ring-trans1 focus:ring-1 focus:outline-none focus:border-trans1 focus:border-opacity-50" placeholder="*********" type={"password"} required onChange={handleChange('password')} id="password"/>
-                  <div className="mt-2 text-red-400 font-semibold">
-                    <span>{datas?.errortype?.password}</span>
                   </div>
                 </div>
               </form>
@@ -169,15 +147,15 @@ function StepOne() {
         </div>
         {/* end body */}
         {/* start button */}
-        <div className="bottom-0 xl:mt-20 py-6 xss:block">
+        <div className="bottom-0 xl:mt-12 py-6 xss:block">
           <div className="xs:block flex justify-between relative lg:ml-32 ml-12 mr-12 mt-8 lg:mt-4 pb-12">
-            <div className="xs:mb-4 py-5 px-10 rounded-md justify-center items-center flex cursor-pointer border-2 border-trans1 border-opacity-10" onClick={() => {window.open("/start", "_self")}}>
+            <div className="xs:mb-4 py-5 px-10 rounded-md justify-center items-center flex cursor-pointer border-2 border-trans1 border-opacity-10" onClick={() => navigation('/tora-role', {replace:true})}>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 stroke-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path d="M7 16l-4-4m0 0l4-4m-4 4h18"   />
               </svg>
-              <a href="/start" className="text-center font-bold text-[16px] textButton">&nbsp;Kembali</a>
+              <span className="text-center font-bold text-[16px] textButton">&nbsp;Kembali</span>
             </div>
-            <div className="bg-trans1 py-5 px-12 rounded-md justify-center items-center flex cursor-pointer" onClick={() => handleSubmit()}>
+            <div className="bg-trans1 py-5 px-12 rounded-md justify-center items-center flex cursor-pointer" onClick={handleSubmit}>
             <span className="text-white text-center font-bold text-[16px] textButton">Lanjutkan</span>
             </div>
           </div>
@@ -189,4 +167,4 @@ function StepOne() {
   )
 }
 
-export default StepOne
+export default index

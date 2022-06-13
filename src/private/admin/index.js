@@ -55,7 +55,7 @@ function index() {
       setDatas({...datas, errortype});
       try {
         await auth.signInWithEmailAndPassword(datas.data.email, datas.data.password)
-        navigation('/admin/beranda', {replace: true})
+        navigation('/admin/dashboard', {replace: true})
       } catch (error) {
         console.log(error);
         datas.errortype.password = error.message

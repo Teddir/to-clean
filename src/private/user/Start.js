@@ -191,7 +191,7 @@ function Start() {
         {/* start button */}
         <div className="bottom-0 lg:mt-24 py-6">
           <div className="xs:block flex justify-between relative lg:ml-32 ml-12 mr-12 mt-8 lg:mt-4 pb-12">
-          <div className="xs:mb-4 py-5 px-10 rounded-md justify-center items-center flex cursor-pointer border-2 border-trans1 border-opacity-10" onClick={() => navigation("/user/start", {})}>
+          <div className="xs:mb-4 py-5 px-10 rounded-md justify-center items-center flex cursor-pointer border-2 border-trans1 border-opacity-10" onClick={() => navigation("/", {replace:true})}>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 stroke-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path d="M7 16l-4-4m0 0l4-4m-4 4h18"   />
               </svg>

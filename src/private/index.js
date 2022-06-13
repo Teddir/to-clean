@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes, Router, Navigate } from "react-router-dom";
 import FirebaseProvider, { useFirebase } from "../components/firebase/FirebaseProvider";
 
-import Beranda from "./admin/Dashboard/Beranda";
+import Dashboard from "./admin/Dashboard";
 import LoginAdmin from "./admin";
 import Landing from "./landing";
 import ChooseRole from "./Role";
@@ -23,7 +23,7 @@ export default function Navigator() {
           </Route>
           <Route path="admin">
             <Route path="login" element={<LoginAdmin />} />
-            <Route path="beranda"  element={<Beranda />}/>
+            <Route path="Dashboard"  element={<Dashboard />}/>
           </Route>
         </>) : (<>
           <Route path="tora-role" element={<ChooseRole />} />

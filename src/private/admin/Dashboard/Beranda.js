@@ -1,107 +1,139 @@
 import React from "react";
-import { auth } from "../../../components/firebase/FirebaseProvider";
-import { useNavigate } from "react-router-dom";
-import logo from "../../../src/image/logo.svg"
 
-const listMenu = [
+const myData = [
   {
-    no:1,
-    nama:'Beranda',
-    svg:<svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 stroke-2" color="white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-        </svg>,
+    id:1,
+    nama:'IT Departement',
+    nilai:200,
+    color: 'bg-c1'
   },
   {
-    no:2,
-    nama:'List Kebersihan',
-    svg:<svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 stroke-2" color="white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-        </svg>,
+    id:2,
+    nama:'Salles Departement',
+    nilai:90,
+    color: 'bg-c2'
   },
   {
-    no:3,
-    nama:'Users',
-    svg:<svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 stroke-2" color="white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-        </svg>,
+    id:3,
+    nama:'Markom Departement',
+    nilai:190,
+    color: 'bg-c3'
   },
   {
-    no:4,
-    nama:'Settings',
-    svg:<svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 stroke-2" color="white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-          <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>,
+    id:4,
+    nama:'WareHouse Departement',
+    nilai:180,
+    color: 'bg-c4'
   },
   {
-    no:5,
-    nama:'Keluar',
-    svg:<svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 stroke-2" color="white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-        </svg>,
+    id:5,
+    nama:'Finance Departement',
+    nilai:220,
+    color: 'bg-c2'
+  },
+  {
+    id:6,
+    nama:'R&D Departement',
+    nilai:250,
+    color: 'bg-c1',
+  },
+  {
+    id:6,
+    nama:'Tailor Departement',
+    nilai:250,
+    color: 'bg-c3'
   },
 ]
 
-export default function Beranda() {
-  const navigation = useNavigate()
-  const [open, setOpen] = React.useState(true);
-  const [menuActive, setMenuActive] = React.useState({
-    no:1
-  });
+const myHukuman = [
+  {
+    id:1,
+    isi:'Makan nasi padang 2 bungkus tanpas minum air.'
+  },
+  {
+    id:2,
+    isi:'Bersihin musholla kantor dan juga WC.'
+  },
+  
+  {
+    id:3,
+    isi:'Bersihin musholla kantor dan juga WC.'
+  },
+]
 
-  const handleNavPosision = () => {
-    setOpen(!open)
-  }
+export default function Beranda(data) {
+  const open = data?.open
   return (
-    <div className="flex">
-      <div className={`${open ? 'w-[26rem]' : 'w-[7rem]' } min-h-screen bg-gradient-to-t from-trans1 to-trans3 relative duration-300`}>
-        <div className="flex justify-between items-center mt-6 mb-[10rem] pt-6 px-8">
-          <div className={`${open ? 'absolute p-4' : 'block pl-2' } right-0 bg-none rounded-tl-xl rounded-bl-xl cursor-pointer duration-300`} onClick={handleNavPosision}>
-            {open ? (
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" color="white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
-              </svg>
-            ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" color="white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
-          </div>
-          <div> 
-            <img src={logo} className={`App-logo ${open ? 'h-26 w-26' : 'h-20 w-20 hidden' }`} alt="logo" />
-          </div>
+    <div className={`flex justify-between flex-row duration-300 pb-12 hide-scroll-bar`}>
+      {/* start body */}
+      <div className={`${!open ? 'w-[80rem]' : 'w-[58rem]'} duration-300`}>
+        <div className={`flex mr-12 duration-200`}>
+          <input className="px-12 py-6 w-full text-[16px] text-trans3 border-[1px] border-trans3 rounded-md border-opacity-30 focus:ring-trans1 focus:ring-1 focus:outline-none focus:border-trans1 focus:border-opacity-50" placeholder="Search departement..." type={"text"}/>
         </div>
-        <div className="gap-x-4">
-            {listMenu.map((data, index) => {
-              return (
-                <div key={index}>
-                <div className={`${data.no === 5 ? 'lg:fixed bottom-0 w-full' : ''} flex items-center py-4 cursor-pointer hover:bg-white hover:bg-opacity-5`} onClick={() => {
-                  setMenuActive(data)
-                  if (data.no === 5) {  
-                    auth.signOut()
-                    navigation("/", {replace:true});
-                  }
-                }}>
-                  <div className={`${data.no === menuActive?.no ? '' : 'opacity-0'} h-12 bg-white w-1.5 rounded-md mr-8`} />
-                  {data.svg}
-                  <div className={`${open ? 'block' : 'hidden'} duration-200 ml-8`}>
-                    <h1 className="text-white text-[18px]">{data.nama}</h1>
+        {/* say hello */}
+        <div className="pt-12">
+          <h1 className="text-[32px] font-bold">Hello Teddi 🙌</h1>
+          <span className="text-[18px] text-neutral-500">Selamat Datang Kembali!</span>
+        </div>
+        {/* card departement */}
+        <div className="grid-cols-2 grid pt-12">
+          {myData.map((data, index) => {
+            return (
+              <div key={index} >
+                <div className={`${data.color} mr-12 rounded-md cursor-pointer my-4 `}>
+                  <div className="pt-8 pb-6 px-6">
+                    <div className="flex justify-between items-center">
+                      <span className="text-2xl font-semibold capitalize">{data.nama}</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 stroke-2 ${data.nilai >= 100 ? '' : 'rotate-180'}`} color={data.nilai >= 100 ? '#0FE224' : '#E20F0F'} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path d="M8 7l4-4m0 0l4 4m-4-4v18" />
+                      </svg>
+                    </div>
+                    <h1 className="text-[14px] text-neutral-500 mb-2">Total nilai</h1>
+                    <h1 className="text-[28px] text-neutral-900 font-bold tracking-tighter">*{data.nilai}</h1>
                   </div>
                 </div>
-                </div>
-              )
-            })}
+              </div>
+            )
+          })}
         </div>
       </div>
-      {menuActive?.no === 1 ? (
-        <div>beranda</div>
-        ) : menuActive?.no === 2 ? (
-          <div>listKebersihan</div>
-        ) : menuActive?.no === 3 ? (
-          <div>users</div>
-        ) : (
-        <div>settings</div>
-      )}
+      {/* leaderboard */}
+      <div className={`${!open ? 'w-[28rem]' : 'w-[25rem]'} duration-300  bg-black rounded-md animate-none pb-12`}>
+        <div className="pt-8 px-12">
+          <span className="text-white text-[24px] font-bold">Leaderboard</span>
+          {myData.map((data, index) => {
+            return (
+              <div key={index}>
+                <div className="mt-12">
+                  <div className="flex items-center">
+                    <div>
+                      <span className={`text-[14px] font-bold h-2 w-2 ${index + 1 === 1 ? "bg-yellow-300" : index + 1 === 2 ? 'bg-blue-400' : index + 1 === 3 ? 'bg-teal-400' : 'bg-backgroundWeb'} py-4 px-6 rounded-full`}>{index+1}</span>
+                    </div>
+                    <span className="text-[14px] font-bold ml-4 text-white">{data.nama}</span>
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+          <div className="mt-12">
+            <div>
+              <span className="text-white text-[24px] font-bold">Hukuman</span>
+            </div>
+              {myHukuman.map((data, index) => {
+                return (
+                  <div key={index}>
+                    <div className="flex mt-4">
+                      <h1 className="text-white mr-4">-</h1>
+                      <span className="text-white text-xl">
+                        {data.isi}
+                      </span>
+                    </div>
+                  </div>
+                )
+              })}
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

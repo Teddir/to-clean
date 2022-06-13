@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-
+import Loading from "../loading/Index";
 // create firebase hooks
 import { firestore, useFirebase } from "./FirebaseProvider";
 import {
@@ -20,7 +20,7 @@ export default function DataProvider(props) {
   const [profil, loadingProfil] = useDocumentData(profileRef, {idField: "id"});
   
   if (loadingProfil) {
-    console.log('process get data from firebase');
+    return <Loading/>
   }
 
   return (

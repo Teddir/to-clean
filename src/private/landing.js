@@ -1,10 +1,16 @@
 import React from "react";
+import { useFirebase } from "../components/firebase/FirebaseProvider";
+import Index from "../components/loading/Index";
 import logo from "../src/image/logo.svg"
 import Longged from "./user/logged";
+import { useNavigate } from "react-router-dom"
 
 export default function Landing() {
+  const navigation = useNavigate()
+  const { user } = useFirebase();
   return (
     <>
+      {/* <Index/> */}
       <div className="min-h-screen py-6 px-12 xs:py-4 xs:px-8 xss:px-6 h-screen bg-gradient-to-b from-trans2 to-trans3 md:flex-grow-0">
         <div className="w-full px-12 pt-4 xss:px-4 h-[5vh] ">
           <div className="flex justify-between items-center">
@@ -28,7 +34,7 @@ export default function Landing() {
                 Protonn was a great product idea which raised $9mln in 2021. Directed to professionals in free professions <br className="hidden"/> to help grow  business and attract clients through engaging video content <br className="hidden"/> and simplify business operations. 
                 </h4>
               </div>
-              <div className="flex justify-center items-center w-full mt-12 cursor-pointer" onClick={() => window.open("/start", "_self")}>
+              <div className="flex justify-center items-center w-full mt-12 cursor-pointer" onClick={() => navigation(`${user ? '/user/start' :'/tora-role'}`, {replace:true})}>
                 <span className="hover:bg-purple-500 px-12 py-4 rounded-md font-bold xs:px-8 xs:py-2 xs:text-[12px] text-purple-500 hover:text-slate-900 border-purple-500 border-2">
                   Gass Bersih-Bersih
                 </span>
@@ -37,7 +43,11 @@ export default function Landing() {
           </div>
         </div>
       </div>
-      <Longged/>
+      {user ? (
+        <>
+        <Longged/>
+        </>
+      ):null}
     </>
   )
 }

@@ -75,7 +75,7 @@ function Longged() {
           <div className="bg-myColor1 w-full mt-20 py-4 pl-6">
             <span className="font-bold lg:text-[20px] md:text-[18px] text-[24px]">Gambar Anda</span>
           </div>
-          <div className="w-full px-12 pt-12 pb-12 xs:px-0 xss:px-0">
+          <div className="w-full px-12 pt-12 pb-12 xs:px-0 xss:px-0 cursor-pointer">
             {/* pending */}
             <>
               <div className="flex justify-between items-center xss:block">
@@ -95,31 +95,31 @@ function Longged() {
                 </div>
               </div>
               <div className="flex flex-col m-auto p-auto">
-            <div
-              className="flex snap-x overflow-x-scroll py-10 hide-scroll-bar"
-            >
-              <div
-                className="flex snap-start flex-nowrap lg:ml-40 md:ml-20 ml-10 "
-              >
-                {listCardImage.map((data, index) => {
-                  return (
-                    <div key={index} className="inline-block px-3">
-                      <div
-                        className="w-[22rem] h-[20rem] smm:w-[15rem] smm:h-[15rem] xs:w-[18rem] xs:h-[18rem] xss:w-[17rem] xss:h-[18rem] max-w-xs overflow-hidden rounded-lg shadow-md bg-backgroundUploadImage bg-opacity-30 hover:shadow-xl transition-shadow duration-300 ease-in-out items-center justify-center flex"
-                      >
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-24 stroke-1 items-center justify-center" fill="none" color="#252525" viewBox="0 0 24 24" stroke="currentColor">
-                              <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
+                <div
+                  className="flex snap-x overflow-x-scroll py-10 hide-scroll-bar"
+                >
+                  <div
+                    className="flex snap-start flex-nowrap lg:ml-40 md:ml-20 ml-10 "
+                  >
+                    {listCardImage.map((data, index) => {
+                      return (
+                        <div key={index} className="inline-block px-3">
+                          <div
+                            className="w-[22rem] h-[20rem] smm:w-[15rem] smm:h-[15rem] xs:w-[18rem] xs:h-[18rem] xss:w-[17rem] xss:h-[18rem] max-w-xs overflow-hidden rounded-lg shadow-md bg-backgroundUploadImage bg-opacity-30 hover:shadow-xl transition-shadow duration-300 ease-in-out items-center justify-center flex"
+                          >
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-24 stroke-1 items-center justify-center" fill="none" color="#252525" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                              </div>
                           </div>
-                      </div>
-                      <h4 className="text-[18px] mt-6">{data.nama}</h4>
-                    </div>
-                  )
-                })}
+                          <h4 className="text-[18px] mt-6">{data.nama}</h4>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
             </>
             {/* approved */}
             <>

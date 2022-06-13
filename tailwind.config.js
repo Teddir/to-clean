@@ -24,7 +24,11 @@ module.exports = {
         'border':"#4A4A55",
         'blueMuda': "#E7ECFC",
         'backgroundUploadImage': "#444444",
-        'myColor1':"#E7ECFC"
+        'myColor1':"#E7ECFC",
+        'c1': '#FCF4E7',
+        'c2': '#E7ECFC',
+        'c3': '#E7FCED',
+        'c4': '#FCE7FA',
       },
       container: {
         padding: '1rem',

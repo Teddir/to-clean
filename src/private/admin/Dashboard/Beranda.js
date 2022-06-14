@@ -1,6 +1,6 @@
 import React from "react";
 
-const myData = [
+export const myData = [
   {
     id:1,
     nama:'IT Departement',

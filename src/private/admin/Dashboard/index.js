@@ -5,6 +5,7 @@ import logo from "../../../src/image/logo.svg"
 import Beranda from "./Beranda";
 import ListKebersihan from "./ListKebersihan";
 import Users from "./Users";
+import Settings from "./Settings";
 
 const listMenu = [
   {
@@ -106,7 +107,7 @@ export default function index() {
             ) : menuActive?.no === 3 ? (
               <Users/>
               ) : (
-                <div>settings</div>
+                <Settings/>
                 )}
       </div>
     </div>

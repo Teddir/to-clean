@@ -1,6 +1,6 @@
 import React from "react";
 
-const myDataUser = [
+export const myDataUser = [
   {
     id:1,
     nama:'Teddi Rahman',

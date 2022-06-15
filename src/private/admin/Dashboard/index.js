@@ -6,6 +6,7 @@ import Beranda from "./Beranda";
 import ListKebersihan from "./ListKebersihan";
 import Users from "./Users";
 import Settings from "./Settings";
+import Modal from "./Modal";
 
 const listMenu = [
   {
@@ -49,8 +50,12 @@ const listMenu = [
 export default function index() {
   const navigation = useNavigate()
   const [open, setOpen] = React.useState(true);
+  const [modal, setModal] = React.useState({
+    status:false,
+    mode:''
+  });
   const [menuActive, setMenuActive] = React.useState({
-    no:1
+    no:4
   });
 
   const handleNavPosision = () => {
@@ -107,9 +112,13 @@ export default function index() {
             ) : menuActive?.no === 3 ? (
               <Users/>
               ) : (
-                <Settings/>
+                <Settings modal={modal} setModal={setModal}/>
                 )}
       </div>
+      {/* modal */}
+      {modal?.status ? (
+        <Modal modal={modal} setModal={setModal}/>
+      ) : null}
     </div>
   )
 }

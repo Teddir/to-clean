@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { myData } from "./Beranda";
 import { myDataUser } from "./Users";
 
-export default function Settings() {
+export default function Settings(props) {
   const data = myDataUser
   const dataDepartement = myData
   return (
@@ -20,7 +21,7 @@ export default function Settings() {
         {/* settings menu add admin */}
         <div className="grid grid-cols-2">
           <div className="w-[96%]">
-            <div className="flex items-center cursor-pointer">
+            <div className="flex items-center cursor-pointer" onClick={() => props?.setModal({status: !props?.modal?.status, mode:'addAdmin'})}>
               <h1 className="font-bold text-[20px] mr-4">Account Admin</h1>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 stroke-2" color="#242424" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -55,7 +56,7 @@ export default function Settings() {
                         </div>
                       </div>
                     </td>
-                    <td className={`pl-8 pt-8 pb-6 text-[14px] font-semibold text-neutral-800`}>Feb 22, 2022</td>
+                    <td className={`pl-8 pt-8 pb-6 text-[14px] font-semibold text-neutral-800`}>Feb 22 - Teddi</td>
                     <td className={`pl-8 pt-8 pb-6 text-[14px]`}>
                       <div className="flex">
                         <div className="p-4 cursor-pointer mr-2">
@@ -80,7 +81,7 @@ export default function Settings() {
         {/* settings menu add user */}
         <div className="grid grid-cols-2 my-12">
           <div className="w-[96%]">
-            <div className="flex items-center cursor-pointer">
+            <div className="flex items-center cursor-pointer" onClick={() => props?.setModal({status: !props?.modal?.status, mode:'addUser'})}>
               <h1 className="font-bold text-[20px] mr-4">Account Users</h1>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 stroke-2" color="#242424" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -115,7 +116,7 @@ export default function Settings() {
                         </div>
                       </div>
                     </td>
-                    <td className={`pl-8 pt-8 pb-6 text-[14px] font-semibold text-neutral-800`}>Feb 22, 2022</td>
+                    <td className={`pl-8 pt-8 pb-6 text-[14px] font-semibold text-neutral-800`}>Feb 22 - Teddi</td>
                     <td className={`pl-8 pt-8 pb-6 text-[14px]`}>
                       <div className="flex">
                         <div className="p-4 cursor-pointer mr-2">
@@ -140,7 +141,7 @@ export default function Settings() {
         {/* settings menu add user */}
         <div className="grid grid-cols-2 my-12">
           <div className="w-[96%]">
-            <div className="flex items-center cursor-pointer">
+          <div className="flex items-center cursor-pointer" onClick={() => props?.setModal({status: !props?.modal?.status, mode:'addDepartement'})}>
               <h1 className="font-bold text-[20px] mr-4">Departement</h1>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 stroke-2" color="#242424" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -169,7 +170,7 @@ export default function Settings() {
                         </div>
                       </div>
                     </td>
-                    <td className={`pl-8 pt-8 pb-6 text-[14px] font-semibold text-neutral-800`}>Feb 22, 2022</td>
+                    <td className={`pl-8 pt-8 pb-6 text-[14px] font-semibold text-neutral-800`}>Feb 22 - Teddi</td>
                     <td className={`pl-8 pt-8 pb-6 text-[14px]`}>
                       <div className="flex">
                         <div className="p-4 cursor-pointer mr-2">
@@ -194,7 +195,7 @@ export default function Settings() {
         {/* settings menu add hukuman */}
         <div className="grid grid-cols-2">
           <div className="w-[96%]">
-            <div className="flex items-center cursor-pointer">
+            <div className="flex items-center cursor-pointer" onClick={() => props?.setModal({status: !props?.modal?.status, mode:'addHukuman'})}>
               <h1 className="font-bold text-[20px] mr-4">Hukuman</h1>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 stroke-2" color="#242424" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />

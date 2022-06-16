@@ -1,7 +1,7 @@
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
+// Your web app's Firebase configuration as
 let firebaseConfig = {
   apiKey: "AIzaSyBOjT6Ln8luD-pptgNxTVBcOa6A4nMRoaI",
   authDomain: "toclean-dev.firebaseapp.com",

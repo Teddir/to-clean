@@ -25,7 +25,7 @@ export const storage = firebase.storage();
 const region =
   process.env.REACT_APP_FIREBASE_PROD === "YES"
     ? "asia-southeast2"
-    : "us-central1";
+    : "asia-southeast2";
 export const firefunctions = firebase.app().functions(region);
 
 const FirebaseContext = React.createContext();

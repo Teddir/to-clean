@@ -3,12 +3,12 @@
 
 // Your web app's Firebase configuration as
 let firebaseConfig = {
-  apiKey: "AIzaSyBOjT6Ln8luD-pptgNxTVBcOa6A4nMRoaI",
-  authDomain: "toclean-dev.firebaseapp.com",
-  projectId: "toclean-dev",
-  storageBucket: "toclean-dev.appspot.com",
-  messagingSenderId: "162827311737",
-  appId: "1:162827311737:web:6b4fbf018bceeac00592a8"
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID
 };
 
 // Initialize Firebase

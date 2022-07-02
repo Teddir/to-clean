@@ -12,22 +12,23 @@ export function useData() {
   return React.createContext(DataContext);
 }
 
-export const userCollection = firestore.collection('user');
+export const usersCollection = firestore.collection('users');
 
 export default function DataProvider(props) {
   const user = useFirebase();
-  const profileRef = firestore.doc(`user/${user.uid}`);
-  const [profil, loadingProfil] = useDocumentData(profileRef, {idField: "id"});
+
+  const usersRef = firestore.doc(`users`);
+  const [users, loadingUsers] = useDocumentData(usersRef, {idField: "id"});
   
-  if (loadingProfil) {
+  if (loadingUsers) {
     return <Loading/>
   }
 
   return (
     <DataContext.Provider
       value={{
-        loadingProfil,
-        profil
+        usersRef,
+        users
       }}
     >
       {props.children}

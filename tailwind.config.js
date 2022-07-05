@@ -13,6 +13,8 @@ module.exports = {
     extend: {
       colors: {
         'primary': "#12141E",
+        'secondary': '#4A4A55',
+        'disable': '#A7A7AE',
         'trans1': "#252525",
         'trans2': "#00020C",
         'trans3': "#000",
@@ -22,9 +24,9 @@ module.exports = {
         'colorButton': "#12141E",
         'backgroundWeb':"#E5E5E5",
         'border':"#4A4A55",
-        'blueMuda': "#E7ECFC",
+        'borderSecondary': "#E7ECFC",
         'backgroundUploadImage': "#444444",
-        'myColor1':"#E7ECFC",
+        'c0':"#E7ECFC",
         'c1': '#FCF4E7',
         'c2': '#E7ECFC',
         'c3': '#E7FCED',

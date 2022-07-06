@@ -13,7 +13,7 @@ function App() {
       <FirebaseProvider>
         <Routes>
           <Route path="*" element={<Navi />} />
-          <Route path="/" element={<Landing/>} />
+          <Route path="/" element={<Landing />} />
         </Routes>
       </FirebaseProvider>
     </BrowserRouter>

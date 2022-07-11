@@ -1,4 +1,6 @@
 import React from "react";
+import { useData } from "../../../components/firebase/DataProvider";
+import { useFirebase } from "../../../components/firebase/FirebaseProvider";
 
 export const myData = [
   {
@@ -63,6 +65,8 @@ const myHukuman = [
 
 export default function Beranda(data) {
   const open = data?.open
+  const { users } = useData()
+  // console.log('beranda', users);
   return (
     <div className={`flex justify-between flex-row duration-300 pb-12 hide-scroll-bar`}>
       {/* start body */}
@@ -72,7 +76,7 @@ export default function Beranda(data) {
         </div>
         {/* say hello */}
         <div className="pt-12">
-          <h1 className="text-[32px] font-bold">Hello Teddi 🙌</h1>
+          <h1 className="text-[32px] font-bold">Hello 🙌</h1>
           <span className="text-[18px] text-neutral-500">Selamat Datang Kembali!</span>
         </div>
         {/* card departement */}

@@ -30,10 +30,10 @@ module.exports = {
         'c1': '#FCF4E7',
         'c2': '#E7ECFC',
         'c3': '#E7FCED',
-        'c4': '#FCE7FA',
+        'c4': '#FCE7FA'
       },
       container: {
-        padding: '1rem',
+        padding: '1rem'
       },
     },
   },

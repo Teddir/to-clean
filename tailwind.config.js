@@ -35,6 +35,9 @@ module.exports = {
       container: {
         padding: '1rem'
       },
+      fontFamily: {
+        SSP: "'Source Sans Pro', serif"
+      }
     },
   },
   plugins: [],

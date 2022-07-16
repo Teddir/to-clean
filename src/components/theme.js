@@ -137,12 +137,12 @@ export const Button = ({ onPress, mode, disable, label, icon }) => {
   const borderColor = [disable ? "border-disable" : "border-border"];
   const textColor = [disable ? "text-border" : modeText];
   const cursorPointer = [disable ? "cursor-not-allowed" : "cursor-pointer"];
-  const styleButton = `py-6 px-10 rounded-md justify-center items-center flex ${cursorPointer} ${bgColor} ${textColor}`;
-  const styleButtonOutline = `py-6 px-10 rounded-md justify-center items-center border-2 flex ${cursorPointer} ${borderColor} ${textColor}`;
+  const styleButton = `py-4 px-6 rounded-md justify-center items-center border-2 ${borderColor} flex ${cursorPointer} ${bgColor} ${textColor}`;
+  const styleButtonOutline = `py-4 px-6 rounded-md justify-center items-center border-2 flex ${cursorPointer} ${borderColor} ${textColor}`;
   const nilaiStyle = mode === "outline" ? styleButtonOutline : styleButton;
   return (
     <div
-      className={`${nilaiStyle} xs:mb-4 xs:mr-4`}
+      className={`${nilaiStyle} xs:mb-4`}
       onClick={() => (!disable && onPress ? onPress() : {})}
     >
       {icon === "back" && (
@@ -158,7 +158,7 @@ export const Button = ({ onPress, mode, disable, label, icon }) => {
           </svg>
         </div>
       )}
-      <span className={`text-2xl font-semibold `}>{label}</span>
+      <span className={`text-lg font-semibold xs:text-xl`}>{label}</span>
     </div>
   );
 };

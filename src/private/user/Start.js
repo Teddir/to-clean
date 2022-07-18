@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import logo from "../../src/image/logo.svg";
 import { useNavigate } from "react-router-dom";
 import { Button, SideBarProcess } from "../../components/theme";
+import { storage, useFirebase } from "../../components/firebase/FirebaseProvider";
 
 const defaultData = [
   {
@@ -12,6 +13,7 @@ const defaultData = [
 
 function Start() {
   const navigation = useNavigate();
+  const { user } = useFirebase()
   const [listCardImage, setListCardImage] = useState(
     defaultData ? defaultData : []
   );
@@ -34,9 +36,14 @@ function Start() {
   };
 
   const handleChange = (prop) => (event) => {
-    setListCardImage({
-      ...listCardImage,
-      [prop]: event.target.value,
+    setListCardImage((datas) => {
+      const kamu = datas.map((a, i) => {
+        if (a?.id === prop?.id) {
+          a.nama = event.target.value;
+        }
+        return a;
+      });
+      return kamu;
     });
   };
 
@@ -45,11 +52,16 @@ function Start() {
     if (files) {
       if (files.length !== 0) {
         const file = files[0];
+        if (file.size >= 512000) {
+          return alert('file terlalu besar > 5000KB')
+        } 
         const newUrl = URL.createObjectURL(file);
         setListCardImage((datas) => {
           const kamu = datas.map((a, i) => {
-            if (a?.id === prop) {
+            if (a?.id === prop?.id) {
               a.url = newUrl;
+              a.typeImage = file.name.substring(file.name.lastIndexOf("."))
+              a.file = file
             }
             return a;
           });
@@ -58,6 +70,19 @@ function Start() {
       }
     }
   };
+
+  
+  const handleSubmit = async () => {
+    try {
+      const imageUserStorage = storage.ref('users')
+      listCardImage.map( async (a) => {
+        await imageUserStorage.child(`/clean/${user?.uid}/${a?.nama}_${Date.now()}${a?.typeImage}`).put(a.file)
+        // console.log(urlRef.metadata.fullPath);
+      })
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   return (
     <div className="max-h-full min-h-screen max-w-full flex bg-backgroundWeb">
@@ -124,17 +149,12 @@ function Start() {
                       key={index}
                       className="xl:mr-4 xl:mb-4 mt-6 items-center md:block lg:block "
                     >
-                      {data.nama ? (
-                        <label className="text-[16px] lg:text-[18px] font-[500] font-sans">
-                          {data.nama}
-                        </label>
-                      ) : (
-                        <input
+                      <input
                           className="text-[16px] lg:text-[18px] font-[500] font-sans placeholder:opacity-50 bg-transparent focus:outline-none"
                           placeholder="input ruangan"
-                          onChange={handleChange("nama")}
+                          onChange={handleChange(data)}
+                          value={data?.nama}
                         />
-                      )}
                       <div className="block justify-center pt-6">
                         <div
                           style={{
@@ -144,7 +164,7 @@ function Start() {
                             backgroundSize: "cover",
                             backgroundRepeat: "repeat",
                           }}
-                          className="flex flex-col h-[16rem] w-[16rem] xs:w-auto xs:h-[20rem] mb-4 border-2 border-border border-opacity-30 rounded-md items-center justify-center z-10"
+                          className={`${!fetchedUrl ? "border-border" : "border-c0"} flex flex-col h-[16rem] w-[16rem] xs:w-auto xs:h-[20rem] mb-4 border-2 border-opacity-30 rounded-md items-center justify-center z-10`}
                         >
                           {/* <img alt="haha" src={fetchedUrl} /> */}
                           <div className={`${hiddenIcon} z-0`}>
@@ -177,20 +197,27 @@ function Start() {
                             <span>Hapus Ruangan</span>
                           </div>
                         ) : null}
-                        <input
-                          accept="image/*"
-                          id="icon-button-file"
-                          capture="environment"
-                          onChange={handleCapture(data?.id)}
-                          type="file"
-                          className="block w-auto text-sm text-slate-500 
-                            file:mr-4 file:py-2 file:px-4
-                            file:rounded-full file:border-0
-                            file:text-sm file:font-semibold
-                            file:bg-violet-50 file:text-violet-700
-                            hover:file:bg-violet-100
-                          "
-                        />
+                        <div onClick={() => {
+                            if (!data?.nama) {
+                            alert("Mohon untuk menginput nama ruangan!")
+                            return null
+                          }}}>
+                          <input
+                            accept="image/jpeg,image/png,image/jpg"
+                            id="icon-button-file"
+                            capture="environment"
+                            disabled={!data?.nama}
+                            onChange={handleCapture(data)}
+                            type="file"
+                            className="block w-auto text-sm text-slate-500 
+                              file:mr-4 file:py-2 file:px-4
+                              file:rounded-full file:border-0
+                              file:text-sm file:font-semibold
+                              file:bg-violet-50 file:text-violet-700
+                              hover:file:bg-violet-100
+                            "
+                          />
+                        </div>
                       </div>
                     </div>
                   );
@@ -237,7 +264,7 @@ function Start() {
             />
             <Button
               label={"Lanjutkan"}
-              onPress={() => navigation("/tora/user/finish", { replace: true })}
+              onPress={handleSubmit}
             />
           </div>
         </div>

@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import logo from "../../src/image/logo.svg";
 import { useNavigate } from "react-router-dom";
 import { Button, SideBarProcess } from "../../components/theme";
-import { storage, useFirebase } from "../../components/firebase/FirebaseProvider";
+import {
+  FieldValue,
+  storage,
+} from "../../components/firebase/FirebaseProvider";
+import {
+  cleansCollection,
+  useData,
+} from "../../components/firebase/DataProvider";
 
 const defaultData = [
   {
@@ -13,10 +20,8 @@ const defaultData = [
 
 function Start() {
   const navigation = useNavigate();
-  const { user } = useFirebase()
-  const [listCardImage, setListCardImage] = useState(
-    defaultData ? defaultData : []
-  );
+  const { users } = useData();
+  const [listCardImage, setListCardImage] = useState([]);
 
   const handleAddListCard = () => {
     const newCard = [
@@ -53,15 +58,15 @@ function Start() {
       if (files.length !== 0) {
         const file = files[0];
         if (file.size >= 512000) {
-          return alert('file terlalu besar > 5000KB')
-        } 
+          return alert("file terlalu besar > 5000KB");
+        }
         const newUrl = URL.createObjectURL(file);
         setListCardImage((datas) => {
           const kamu = datas.map((a, i) => {
             if (a?.id === prop?.id) {
               a.url = newUrl;
-              a.typeImage = file.name.substring(file.name.lastIndexOf("."))
-              a.file = file
+              a.typeImage = file.name.substring(file.name.lastIndexOf("."));
+              a.file = file;
             }
             return a;
           });
@@ -71,18 +76,60 @@ function Start() {
     }
   };
 
-  
   const handleSubmit = async () => {
+    if (listCardImage.length <= 0) {
+      alert('silahkan lengkapi data terlebih dahulu > 1')
+      return
+    }
     try {
-      const imageUserStorage = storage.ref('users')
-      listCardImage.map( async (a) => {
-        await imageUserStorage.child(`/clean/${user?.uid}/${a?.nama}_${Date.now()}${a?.typeImage}`).put(a.file)
-        // console.log(urlRef.metadata.fullPath);
-      })
+      const imageUserStorage = storage.ref("users");
+      const newData = [];
+      Promise.all(
+        listCardImage.map(async (a) => {
+          if (!a.url) {
+            return true
+          } else {
+            const urlRef = await imageUserStorage
+              .child(
+                `/clean/${users?.id}/${a?.nama}_${Date.now()}${a?.typeImage}`
+              )
+              .put(a.file);
+            const getUrl = await urlRef.ref.getDownloadURL();
+            newData.push({
+              title: a.nama,
+              thumbnail: getUrl,
+            });
+          }
+        })
+      ).then(async (dat) => {
+        if (dat.find((a) => a === true)) {
+          alert('Mohon maaf terdapat data yang tidak lengkap')
+          return
+        } else {
+          
+          const datas = {
+            data: { ...newData },
+            status: "pending",
+            created_at: FieldValue.serverTimestamp(),
+          };
+          
+          await cleansCollection.doc(users?.id).set(
+            {
+              username: users?.username,
+              department: users?.department,
+              role: users?.role,
+            },
+            { merge: true }
+          );
+
+          const response = await cleansCollection.doc(users?.id).collection("data_clean").add(datas);
+          navigation(`/tora/user/finish/${response.id}`)
+        }
+      });
     } catch (error) {
       console.log(error.message);
     }
-  }
+  };
 
   return (
     <div className="max-h-full min-h-screen max-w-full flex bg-backgroundWeb">
@@ -150,11 +197,11 @@ function Start() {
                       className="xl:mr-4 xl:mb-4 mt-6 items-center md:block lg:block "
                     >
                       <input
-                          className="text-[16px] lg:text-[18px] font-[500] font-sans placeholder:opacity-50 bg-transparent focus:outline-none"
-                          placeholder="input ruangan"
-                          onChange={handleChange(data)}
-                          value={data?.nama}
-                        />
+                        className="text-[16px] lg:text-[18px] font-[500] font-sans placeholder:opacity-50 bg-transparent focus:outline-none"
+                        placeholder="input ruangan"
+                        onChange={handleChange(data)}
+                        value={data?.nama}
+                      />
                       <div className="block justify-center pt-6">
                         <div
                           style={{
@@ -164,7 +211,9 @@ function Start() {
                             backgroundSize: "cover",
                             backgroundRepeat: "repeat",
                           }}
-                          className={`${!fetchedUrl ? "border-border" : "border-c0"} flex flex-col h-[16rem] w-[16rem] xs:w-auto xs:h-[20rem] mb-4 border-2 border-opacity-30 rounded-md items-center justify-center z-10`}
+                          className={`${
+                            !fetchedUrl ? "border-border" : "border-c0"
+                          } flex flex-col h-[16rem] w-[16rem] xs:w-auto xs:h-[20rem] mb-4 border-2 border-opacity-30 rounded-md items-center justify-center z-10`}
                         >
                           {/* <img alt="haha" src={fetchedUrl} /> */}
                           <div className={`${hiddenIcon} z-0`}>
@@ -197,11 +246,14 @@ function Start() {
                             <span>Hapus Ruangan</span>
                           </div>
                         ) : null}
-                        <div onClick={() => {
+                        <div
+                          onClick={() => {
                             if (!data?.nama) {
-                            alert("Mohon untuk menginput nama ruangan!")
-                            return null
-                          }}}>
+                              alert("Mohon untuk menginput nama ruangan!");
+                              return null;
+                            }
+                          }}
+                        >
                           <input
                             accept="image/jpeg,image/png,image/jpg"
                             id="icon-button-file"
@@ -222,14 +274,19 @@ function Start() {
                     </div>
                   );
                 })}
-                <div
-                  className="xl:mr-4 xl:mb-4 mt-6 items-center md:block lg:block "
-                  onClick={() => handleAddListCard()}
-                >
-                  <label className="text-[16px] lg:text-[18px] font-[500] font-sans opacity-50">
-                    Tambah
-                  </label>
-                  <div className="block justify-center pt-6">
+                <div className="xl:mr-4 xl:mb-4 mt-6 items-center md:block lg:block ">
+                  <div
+                    onClick={() => handleAddListCard()}
+                    className="cursor-pointer"
+                  >
+                    <label className="text-[16px] lg:text-[18px] font-[500] font-sans opacity-50">
+                      Tambah
+                    </label>
+                  </div>
+                  <div
+                    className="block justify-center pt-6 cursor-pointer"
+                    onClick={() => handleAddListCard()}
+                  >
                     <div
                       className="flex h-[16rem] w-[16rem] xs:w-auto xs:h-[20rem] mb-4 bg-transparent border-border opacity-80 border-2 border-opacity-30 rounded-md items-center justify-center bg-cover"
                       id="display-image"
@@ -260,12 +317,9 @@ function Start() {
               label={"Kembali"}
               icon="back"
               mode={"outline"}
-              onPress={() => navigation(-1)}
+              onPress={() => navigation('/tora')}
             />
-            <Button
-              label={"Lanjutkan"}
-              onPress={handleSubmit}
-            />
+            <Button label={"Lanjutkan"} onPress={handleSubmit} />
           </div>
         </div>
         {/* end button */}

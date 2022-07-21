@@ -18,6 +18,34 @@ const defaultData = [
   },
 ];
 
+function delay(t, v) {
+  return new Promise(function(resolve) { 
+    setTimeout(resolve.bind(null, v), t)
+  });
+}
+
+function keepTrying(triesRemaining, storageRef) {
+  if (triesRemaining < 0) {
+    return Promise.reject('out of tries');
+  }
+
+  return storageRef.getDownloadURL().then((url) => {
+    return url;
+  }).catch((error) => {
+    switch (error.code) {
+      case 'storage/object-not-found':
+        console.log('process get resize image');
+        return delay(2000).then(() => {
+          return keepTrying(triesRemaining - 1, storageRef)
+        });
+      default:
+        console.log(error.message);
+        return Promise.reject(error);
+    }
+  })
+}
+
+
 function Start() {
   const navigation = useNavigate();
   const { users } = useData();
@@ -78,8 +106,8 @@ function Start() {
 
   const handleSubmit = async () => {
     if (listCardImage.length <= 0) {
-      alert('silahkan lengkapi data terlebih dahulu > 1')
-      return
+      alert("silahkan lengkapi data terlebih dahulu > 1");
+      return;
     }
     try {
       const imageUserStorage = storage.ref("users");
@@ -87,43 +115,55 @@ function Start() {
       Promise.all(
         listCardImage.map(async (a) => {
           if (!a.url) {
-            return true
+            return true;
           } else {
-            const urlRef = await imageUserStorage
+            const downloadImage = imageUserStorage
               .child(
-                `/clean/${users?.id}/${a?.nama}_${Date.now()}${a?.typeImage}`
+                `/clean/${users?.id}/${a?.nama}${a?.typeImage}`
               )
-              .put(a.file);
-            const getUrl = await urlRef.ref.getDownloadURL();
-            newData.push({
-              title: a.nama,
-              thumbnail: getUrl,
-            });
+              .put(a.file).then(async (data) => {
+                var progress = (data.bytesTransferred / data.totalBytes) * 100;
+                // console.log(progress);
+                if (progress === 100) {
+                  // console.log('File available at', data.ref.getMetadata);
+                  const getUrl = await data.ref.getDownloadURL().then((datas) => {
+                    const getThumbnailResize = imageUserStorage
+                    .child(
+                      `/clean/${users?.id}/${a?.nama}_500x500${a?.typeImage}`
+                    )
+                    const isThumbnail = keepTrying(10, getThumbnailResize).then((url) => {
+                      newData.push({
+                        title: a.nama,
+                        thumbnail: url,
+                      });
+                    }).catch((e) => console.log('error download resize image', e.message))
+                    return isThumbnail
+                  }).catch((e) => console.log('error get Url image', e.message))
+                  return getUrl
+                } else {
+                  return true
+                }
+              }).catch((e) => console.log('error download image', e.message))
+            return downloadImage
           }
         })
       ).then(async (dat) => {
         if (dat.find((a) => a === true)) {
-          alert('Mohon maaf terdapat data yang tidak lengkap')
-          return
+          alert("Mohon maaf terdapat data yang tidak lengkap");
+          return;
         } else {
-          
           const datas = {
-            data: { ...newData },
+            data: newData,
             status: "pending",
             created_at: FieldValue.serverTimestamp(),
+            username: users?.username,
+            department: users?.department,
+            role: users?.role,
+            id: users?.id,
           };
-          
-          await cleansCollection.doc(users?.id).set(
-            {
-              username: users?.username,
-              department: users?.department,
-              role: users?.role,
-            },
-            { merge: true }
-          );
 
-          const response = await cleansCollection.doc(users?.id).collection("data_clean").add(datas);
-          navigation(`/tora/user/finish/${response.id}`)
+          const response = await cleansCollection.add(datas);
+          navigation(`/tora/user/finish/${response.id}`);
         }
       });
     } catch (error) {
@@ -317,7 +357,7 @@ function Start() {
               label={"Kembali"}
               icon="back"
               mode={"outline"}
-              onPress={() => navigation('/tora')}
+              onPress={() => navigation("/tora")}
             />
             <Button label={"Lanjutkan"} onPress={handleSubmit} />
           </div>

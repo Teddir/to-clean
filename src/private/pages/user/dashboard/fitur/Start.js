@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import logo from "../../src/image/logo.svg";
+import logo from "../../../../../src/image/logo.svg";
 import { useNavigate } from "react-router-dom";
-import { Button, SideBarProcess } from "../../components/theme";
+import { Button, SideBarProcess } from "../../../../../components/theme";
 import {
   FieldValue,
   storage,
-} from "../../components/firebase/FirebaseProvider";
+} from "../../../../../components/firebase/FirebaseProvider";
 import {
   cleansCollection,
   useData,
-} from "../../components/firebase/DataProvider";
+} from "../../../../../components/firebase/DataProvider";
+import resizeImage from "../../../../../utils/resizeImage";
 
 const defaultData = [
   {
@@ -18,38 +19,11 @@ const defaultData = [
   },
 ];
 
-function delay(t, v) {
-  return new Promise(function(resolve) { 
-    setTimeout(resolve.bind(null, v), t)
-  });
-}
-
-function keepTrying(triesRemaining, storageRef) {
-  if (triesRemaining < 0) {
-    return Promise.reject('out of tries');
-  }
-
-  return storageRef.getDownloadURL().then((url) => {
-    return url;
-  }).catch((error) => {
-    switch (error.code) {
-      case 'storage/object-not-found':
-        console.log('process get resize image');
-        return delay(2000).then(() => {
-          return keepTrying(triesRemaining - 1, storageRef)
-        });
-      default:
-        console.log(error.message);
-        return Promise.reject(error);
-    }
-  })
-}
-
-
 function Start() {
   const navigation = useNavigate();
   const { users } = useData();
   const [listCardImage, setListCardImage] = useState([]);
+  const [loadSubmit, setLoadSubmit] = useState(false);
 
   const handleAddListCard = () => {
     const newCard = [
@@ -105,8 +79,10 @@ function Start() {
   };
 
   const handleSubmit = async () => {
+    setLoadSubmit(true)
     if (listCardImage.length <= 0) {
       alert("silahkan lengkapi data terlebih dahulu > 1");
+      setLoadSubmit(false)
       return;
     }
     try {
@@ -131,7 +107,7 @@ function Start() {
                     .child(
                       `/clean/${users?.id}/${a?.nama}_500x500${a?.typeImage}`
                     )
-                    const isThumbnail = keepTrying(10, getThumbnailResize).then((url) => {
+                    const isThumbnail = resizeImage(10, getThumbnailResize).then((url) => {
                       newData.push({
                         title: a.nama,
                         thumbnail: url,
@@ -150,6 +126,7 @@ function Start() {
       ).then(async (dat) => {
         if (dat.find((a) => a === true)) {
           alert("Mohon maaf terdapat data yang tidak lengkap");
+          setLoadSubmit(false)
           return;
         } else {
           const datas = {
@@ -161,12 +138,14 @@ function Start() {
             role: users?.role,
             id: users?.id,
           };
-
+          
           const response = await cleansCollection.add(datas);
           navigation(`/tora/user/finish/${response.id}`);
+          setLoadSubmit(false)
         }
       });
     } catch (error) {
+      setLoadSubmit(false)
       console.log(error.message);
     }
   };
@@ -359,7 +338,7 @@ function Start() {
               mode={"outline"}
               onPress={() => navigation("/tora")}
             />
-            <Button label={"Lanjutkan"} onPress={handleSubmit} />
+            <Button label={loadSubmit ?"Lanjutkan" : "Loading..."} onPress={handleSubmit} disable={loadSubmit} />
           </div>
         </div>
         {/* end button */}

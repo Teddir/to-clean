@@ -1,6 +1,7 @@
 import React from "react";
-import logo from "../src/image/logo.svg"
+import logo from "../../src/image/logo.svg"
 import { useNavigate } from "react-router-dom";
+import {Button, Button1} from "../../components/theme";
 
 function Start() {
   const navigation = useNavigate()
@@ -24,9 +25,9 @@ function Start() {
   const handleSubmit = () => {
     if (myRole !== '') {
       if (myRole === 'user') {
-        navigation('/user/login', {replace: true})
+        navigation('/tora/user-login', {replace: true})
       } else {
-        navigation('/admin/login', {replace: true});
+        navigation('/tora/admin-login', {replace: true});
       }
     } else {
       alert('pilih role anda terlebih dahulu')
@@ -34,7 +35,7 @@ function Start() {
   }
   
   return (
-    <div className="max-w-full min-h-screen flex bg-backgroundWeb">
+    <div className="max-w-screen-2xl min-h-screen flex bg-backgroundWeb">
       {/* start body1 */}
       <div className="max-h-full w-[34%] bg-gradient-to-b from-trans2 to-trans3 hidden md:block">
         <div className="w-full mx-12 mt-4 pb-12">
@@ -55,7 +56,7 @@ function Start() {
       </div>
       {/* end body1 */}
       {/* start body2 */}
-      <div className="max-h-full xl:w-[66%]">
+      <div className="max-h-full">
         <div className="xl:ml-32 ml-12 mr-12 mt-8 xl:mt-4 pb-12">
           {/* start nav */}
           <div className="flex justify-between items-center">
@@ -67,7 +68,7 @@ function Start() {
             </div>
           </div>
           {/* start nav */}
-          <div className="w-[90%] mt-24 xl:mt-18">
+          <div className="xl:w-[86%] mt-24 xl:mt-18">
             <div>
               <span className="textJudul">Masuk untuk melengkapi data kebersihan.</span>
             </div>
@@ -79,7 +80,7 @@ function Start() {
             </div>
             {/* card */}
             <div className="group cursor-default" onClick={() => handleClick("admin")}>
-              <div className="mt-16 xl:w-[80%] rounded-xl border-2 border-border border-opacity-20 hover:border-blueMuda hover:opacity-100 hover:shadow-md" id="role-admin">
+              <div className="mt-16 w-full rounded-xl border-2 border-border border-opacity-20 hover:border-borderSecondary hover:opacity-100 hover:shadow-md" id="role-admin">
                 <div className="p-4 flex items-center">
                   <div className="bg-pink-200 h-[6rem] w-[6rem] xl:h-[9rem] xl:w-[9rem] rounded-md bg-[url('./src/image/Admin.png')] bg-cover"/>
                   <div className="ml-8">
@@ -91,7 +92,7 @@ function Start() {
             </div>
             {/* <Link to={"/stepone"}> */}
               <div className="group cursor-default" onClick={() => handleClick("user")}>
-                <div className="mt-12 xl:w-[80%] rounded-xl border-2 border-border border-opacity-20 hover:border-blueMuda hover:opacity-100 hover:shadow-md" id="role-user">
+                <div className="mt-12 w-full rounded-xl border-2 border-border border-opacity-20 hover:border-borderSecondary hover:opacity-100 hover:shadow-md" id="role-user">
                   <div className="p-4 flex items-center">
                     <div className="bg-pink-200 h-[6rem] w-[6rem] xl:h-[9rem] xl:w-[9rem] rounded-md bg-[url('./src/image/User.png')] bg-cover"/>
                     <div className="ml-8">
@@ -103,18 +104,11 @@ function Start() {
               </div>
             {/* </Link> */}
           </div>
-          <div className="bottom-0 xl:mt-[8rem] py-6 mt-[6rem] md:mt-[4rem]">
+          {/* button */}
+          <div className="w-full bottom-0 xl:mt-[8rem] pb-6 mt-[6rem] md:mt-[4rem]">
             <div className="xs:block flex justify-between relative">
-              <div className="xs:mb-4 py-5 px-10 rounded-md justify-center items-center flex cursor-default border-2 border-trans1 border-opacity-10" onClick={() => navigation('/', {replace: true})
-              }>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 stroke-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path d="M7 16l-4-4m0 0l4-4m-4 4h18"   />
-                </svg>
-                <a href="/" className="text-center font-bold text-[16px] textButton">&nbsp;Kembali</a>
-              </div>
-              <div className="bg-trans1 py-6 px-10 rounded-md justify-center items-center flex cursor-default" onClick={() => handleSubmit()} >
-              <span className="text-white text-center font-bold text-[16px] textButton">Lanjutkan</span>
-              </div>
+              <Button label={"Kembali"} icon="back" mode={"outline"} onPress={() => navigation('/')}/>
+              <Button label={"Lanjutkan"} onPress={() => handleSubmit()}/>
             </div>
           </div>
           {/* end button */}

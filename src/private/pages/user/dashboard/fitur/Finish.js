@@ -1,26 +1,27 @@
 import React from "react";
-import logo from "../../src/image/logo.svg"
+import logo from "../../../../../src/image/logo.svg"
+import { useNavigate, useParams } from "react-router-dom";
+import { SideBarProcess } from "../../../../../components/theme";
+import { cleansCollection, useData } from "../../../../../components/firebase/DataProvider";
 
 function Finish() {
-  
+  const navigation = useNavigate();
+  const { users } = useData()
+  let { id } = useParams()
   const [datas, setDatas] = React.useState({
-    data : {
       catatan: "",
-    },
   })
 
   const handleChange = (prop) => (event) => {
     setDatas({
       ...datas,
-      data: {
-        ...datas.data,
-        [prop]: event.target.value
-      }
+      [prop]: event.target.value
     })
   }
   
-  const handleSubmit = () => {
-    window.open("/", "_self")  
+  const handleSubmit =  async () => {
+    // await cleansCollection.where("uid", "==", users.)
+    navigation('/tora')  
   }
 
   // console.log(datas);
@@ -34,28 +35,7 @@ function Finish() {
               <img src={logo} className="App-logo h-24 w-24" alt="logo" />
             </div>
           {/* desc */}
-          <div className="w-[80%] xl:w-[90%] mt-24">
-            <div className="h-[50%] cursor-default">
-              <div className="pb-8">
-                <div className="p-4 bg-backgroundWeb w-[90%] flex justify-center items-center rounded-md drop-shadow-lg">
-                  <span className="text-primary font-bold textResponsive">Proses 1</span>
-                </div>
-              </div>
-              <div className="pb-8">
-                <div className="p-4 bg-backgroundWeb w-[90%] flex justify-center items-center rounded-md drop-shadow-lg">
-                  <span className="text-primary font-bold textResponsive">Proses 2</span>
-                </div>
-              </div>
-              <div className="pb-8">
-                <div className="p-4 bg-backgroundWeb w-[90%] flex justify-center items-center rounded-md drop-shadow-lg">
-                  <span className="text-primary font-bold textResponsive">Finish</span>
-                </div>
-              </div>
-            </div>
-            <div className="h-[50%] flex bottom-0 pb-12 fixed items-end">
-              <span className="text-slate-600 font-bold items-center text-md">Tokorame Team @2022</span>
-            </div>
-          </div>
+          <SideBarProcess numberProcess={3} />
         </div>
       </div>
       {/* end body1 */}
@@ -103,11 +83,11 @@ function Finish() {
           {/* start button */}
           <div className="bottom-0 mt-20 xl:mt-24 py-6">
             <div className="xs:block flex justify-between">
-              <div className="xs:mb-4 py-5 px-10 rounded-md justify-center items-center flex cursor-default border-2 border-trans1 border-opacity-10">
+              <div className="xs:mb-4 py-5 px-10 rounded-md justify-center items-center flex cursor-default border-2 border-trans1 border-opacity-10" onClick={() => navigation('/tora/user/start', {replace:true})}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 stroke-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path d="M7 16l-4-4m0 0l4-4m-4 4h18"   />
                 </svg>
-                <a href="/steptwo" className="text-center font-bold text-[16px] textButton">&nbsp;Kembali</a>
+                <span className="text-center font-bold text-[16px] textButton">&nbsp;Kembali</span>
               </div>
               <div className="bg-trans1 py-5 px-12 rounded-md justify-center items-center flex cursor-default" onClick={() => handleSubmit()}>
               <span className="text-white text-center font-bold text-[16px] textButton">Selesai</span>

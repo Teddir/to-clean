@@ -1,6 +1,6 @@
 import React from "react";
-import { useData } from "../../../components/firebase/DataProvider";
-import { useFirebase } from "../../../components/firebase/FirebaseProvider";
+import { useData } from "../../../../../components/firebase/DataProvider";
+import { useFirebase } from "../../../../../components/firebase/FirebaseProvider";
 
 export const myData = [
   {

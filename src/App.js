@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 // import Beranda from "./private/Beranda";
-import Navi from "./private";
+import Routers from "./private/routers";
 import FirebaseProvider from "./components/firebase/FirebaseProvider";
-import Landing from "./private/landing";
+import LandingPage from "./private/LandingPage";
 
 function App() {
   return (
@@ -12,8 +12,8 @@ function App() {
       <App /> */}
       <FirebaseProvider>
         <Routes>
-          <Route path="*" element={<Navi />} />
-          <Route path="/" element={<Landing />} />
+          <Route path="*" element={<Routers />} />
+          <Route path="/" element={<LandingPage />} />
         </Routes>
       </FirebaseProvider>
     </BrowserRouter>

@@ -169,7 +169,7 @@ function Start() {
         <div className="xl:ml-32 ml-12 mr-12 mt-8 xl:mt-4 pb-12">
           {/* start nav */}
           <div className="flex justify-between items-center">
-            <div className="bg-trans1 p-2 rounded-xl md:opacity-0 lg:opacity-0">
+            <div className="p-2 rounded-xl md:opacity-0 lg:opacity-0">
               <img
                 src={logo}
                 className="App-logo h-16 w-16 xl:h-24 xl:w-24"
@@ -338,7 +338,7 @@ function Start() {
               mode={"outline"}
               onPress={() => navigation("/tora")}
             />
-            <Button label={loadSubmit ?"Lanjutkan" : "Loading..."} onPress={handleSubmit} disable={loadSubmit} />
+            <Button label={loadSubmit ?"Lanjutkan" : "Loading..."} onPress={handleSubmit} disable={loadSubmit ? true : false} />
           </div>
         </div>
         {/* end button */}

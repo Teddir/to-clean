@@ -30,13 +30,15 @@ module.exports = {
         'c1': '#FCF4E7',
         'c2': '#E7ECFC',
         'c3': '#E7FCED',
-        'c4': '#FCE7FA'
+        'c4': '#FCE7FA',
+        'c5': '#eee'
       },
       container: {
         padding: '1rem'
       },
       fontFamily: {
-        SSP: "'Source Sans Pro', serif"
+        SSP: "'Source Sans Pro', serif",
+        Pop:"'Poppins', sans-serif"
       }
     },
   },

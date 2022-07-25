@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { Component } from "react";
+import logo from "../src/image/logo.svg";
 
 export class ButtonOld extends Component {
   constructor(props) {
@@ -112,7 +113,7 @@ export class ButtonOld extends Component {
       </div>
     ) : variant === "disable" ? (
       <div
-        className={`${styleVariant} py-6 px-10 rounded-md justify-center items-center flex cursor-not-allowed`}
+        className={`${styleVariant} py-6 px-10 justify-center items-center flex cursor-not-allowed`}
         onClick={() => onClick()}
       >
         <span
@@ -134,15 +135,15 @@ export class ButtonOld extends Component {
 export const Button = ({ onPress, mode, disable, label, icon }) => {
   const modeText = mode === "outline" ? "text-primary" : "text-white";
   const bgColor = [disable ? "bg-disable" : "bg-primary"];
-  const borderColor = [disable ? "border-disable" : "border-border"];
+  const borderColor = [disable ? "border-disable" : "border-primary"];
   const textColor = [disable ? "text-border" : modeText];
   const cursorPointer = [disable ? "cursor-not-allowed" : "cursor-pointer"];
-  const styleButton = `py-4 px-6 rounded-md justify-center items-center border-2 ${borderColor} flex ${cursorPointer} ${bgColor} ${textColor}`;
-  const styleButtonOutline = `py-4 px-6 rounded-md justify-center items-center border-2 flex ${cursorPointer} ${borderColor} ${textColor}`;
+  const styleButton = `py-4 px-6 justify-center items-center border-2 ${borderColor} flex ${cursorPointer} ${bgColor} ${textColor}`;
+  const styleButtonOutline = `py-4 px-6 justify-center items-center border-2 flex ${cursorPointer} ${borderColor} ${textColor}`;
   const nilaiStyle = mode === "outline" ? styleButtonOutline : styleButton;
   return (
     <div
-      className={`${nilaiStyle} xs:mb-4`}
+      className={`${nilaiStyle} xs:mb-4  hover:shadow-2xl duration-500`}
       onClick={() => (!disable && onPress ? onPress() : {})}
     >
       {icon === "back" && (
@@ -158,7 +159,7 @@ export const Button = ({ onPress, mode, disable, label, icon }) => {
           </svg>
         </div>
       )}
-      <span className={`text-lg font-semibold xs:text-xl`}>{label}</span>
+      <span className={`xl:text-[1rem] text-[1rem] font-semibold`}>{label}</span>
     </div>
   );
 };
@@ -182,7 +183,7 @@ export const SideBarProcess = ({ numberProcess }) => {
             ];
             const spanStyle = [
               numberProcess >= index + 1
-                ? "p-4 bg-backgroundWeb w-[90%] flex justify-center items-center rounded-md drop-shadow-lg"
+                ? "p-4 bg-backgroundWeb w-[90%] flex justify-center items-center drop-shadow-lg"
                 : "border-2 border-white opacity-10 p-4 bg-transparent w-[90%] flex justify-center items-center rounded-md",
             ];
             return (
@@ -212,6 +213,21 @@ export const useSnackBar = () => {
           <path fill="currentColor" d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"></path>
         </svg>
         A simple warning alert - check it out!
+      </div>
+    </div>
+  )
+}
+
+export const Header = () => {
+  return (
+    <div className="w-full xss:px-4 ">
+      <div className="flex justify-between items-center">
+        <img
+          src={logo}
+          className="App-logo h-16 w-16 xl:h-20 xl:w-20"
+          alt="logo"
+        />
+        <div className="h-[1rem] w-[4rem] xl:w-[6rem] bg-gradient-to-r from-white to-white-icon" />
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
 import React from "react";
 import { useFirebase } from "../components/firebase/FirebaseProvider";
+import cleanImage from "../src/image/cleanImage.png";
 import logo from "../src/svg/logo.svg";
-import cleanImage from "../src/svg/cleanImage.png";
 import tokorame from "../src/svg/miniTokorame.svg";
 import mySure from "../src/svg/miniMySure.svg";
 import nibras from "../src/svg/miniNibras.svg";

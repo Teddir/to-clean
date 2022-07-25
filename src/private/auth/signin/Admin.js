@@ -3,7 +3,7 @@ import {
   auth,
   firefunctions,
 } from "../../../components/firebase/FirebaseProvider";
-import logo from "../../../src/image/logo.svg";
+import logo from "../../../src/svg/logo.svg";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../components/theme";
 

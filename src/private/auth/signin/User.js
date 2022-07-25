@@ -5,7 +5,7 @@ import {
   firefunctions,
 } from "../../../components/firebase/FirebaseProvider";
 import { Button, SideBarProcess } from "../../../components/theme";
-import logo from "../../../src/image/logo.svg";
+import logo from "../../../src/svg/logo.svg";
 
 function UserAuth() {
   const navigation = useNavigate();

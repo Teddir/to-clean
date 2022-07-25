@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../../../../../src/image/logo.svg";
+import logo from "../../../../../src/svg/logo.svg";
 import { useNavigate } from "react-router-dom";
 import { Button, SideBarProcess } from "../../../../../components/theme";
 import {

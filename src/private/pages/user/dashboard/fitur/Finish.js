@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../../../../src/image/logo.svg"
+import logo from "../../../../../src/svg/logo.svg"
 import { useNavigate, useParams } from "react-router-dom";
 import { SideBarProcess } from "../../../../../components/theme";
 import { cleansCollection, useData } from "../../../../../components/firebase/DataProvider";

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { Component } from "react";
-import logo from "../src/image/logo.svg";
+import logo from "../src/svg/logo.svg";
 
 export class ButtonOld extends Component {
   constructor(props) {

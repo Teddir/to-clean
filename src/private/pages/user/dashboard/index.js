@@ -103,7 +103,7 @@ function Index() {
 
         <div>
           <div className="grid xl:justify-items-center xl:grid-cols-4 grid-cols-1">
-            {cleans?.map((datas, index) => {
+            {cleans?.filter((a) => clickFilter.status === "all" ? a : a.status === clickFilter.status).map((datas, index) => {
               const extData = datas?.data[0]
               return (
                 <div key={index}>

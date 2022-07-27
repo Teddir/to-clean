@@ -138,8 +138,8 @@ export const Button = ({ onPress, mode, disable, label, icon }) => {
   const borderColor = [disable ? "border-disable" : "border-primary"];
   const textColor = [disable ? "text-border" : modeText];
   const cursorPointer = [disable ? "cursor-not-allowed" : "cursor-pointer"];
-  const styleButton = `py-4 px-6 justify-center items-center border-2 ${borderColor} flex ${cursorPointer} ${bgColor} ${textColor}`;
-  const styleButtonOutline = `py-4 px-6 justify-center items-center border-2 flex ${cursorPointer} ${borderColor} ${textColor}`;
+  const styleButton = `py-3 px-6 justify-center items-center border-2 ${borderColor} flex ${cursorPointer} ${bgColor} ${textColor}`;
+  const styleButtonOutline = `py-3 px-6 justify-center items-center border-2 flex ${cursorPointer} ${borderColor} ${textColor}`;
   const nilaiStyle = mode === "outline" ? styleButtonOutline : styleButton;
   return (
     <div
@@ -159,7 +159,7 @@ export const Button = ({ onPress, mode, disable, label, icon }) => {
           </svg>
         </div>
       )}
-      <span className={`xl:text-[1rem] text-[1rem] font-semibold`}>{label}</span>
+      <span className={`xl:text-[1rem] text-[1rem] font-bold`}>{label}</span>
     </div>
   );
 };
@@ -218,7 +218,12 @@ export const useSnackBar = () => {
   )
 }
 
-export const Header = () => {
+export const Header = ({
+  labels,
+  actions
+}) => {
+  const [label, otherLabel] = typeof labels === "string" ? [labels] : labels
+  const [action, otherAction] = typeof actions === "function" ? [actions] : actions
   return (
     <div className="w-full xss:px-4 ">
       <div className="flex justify-between items-center">
@@ -227,7 +232,25 @@ export const Header = () => {
           className="App-logo h-16 w-16 xl:h-20 xl:w-20"
           alt="logo"
         />
-        <div className="h-[1rem] w-[4rem] xl:w-[6rem] bg-gradient-to-r from-white to-white-icon" />
+        {labels ? (
+          <>
+            <div className="flex">
+              {otherLabel && (
+                <div className="mr-3">
+                  <Button label={otherLabel} mode="outline" onPress={otherAction}/>
+                </div>
+              )}
+              <div>
+                <Button label={label} onPress={action}/>
+              </div>
+            </div>
+          </>
+          ) : (
+            <>
+              <div className="h-[1rem] w-[4rem] xl:w-[6rem] bg-gradient-to-r from-white to-white-icon" />
+            </>
+          ) 
+        }
       </div>
     </div>
   )

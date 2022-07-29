@@ -1,7 +1,7 @@
 import React from "react";
 import { auth } from "../../../../components/firebase/FirebaseProvider";
 import { useNavigate } from "react-router-dom";
-import logo from "../../../../src/svg/logo.svg";
+import logo from "../../../../src/svg/logoWhite.svg";
 import Beranda from "./fitur/Beranda";
 import ListKebersihan from "./fitur/ListKebersihan";
 import Nilai from "./fitur/Nilai";

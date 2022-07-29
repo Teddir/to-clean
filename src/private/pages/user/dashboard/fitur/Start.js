@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../../../../../src/svg/logo.svg";
+import logo from "../../../../../src/svg/logoWhite.svg";
 import { useNavigate } from "react-router-dom";
 import { Button, SideBarProcess } from "../../../../../components/theme";
 import {
@@ -338,7 +338,7 @@ function Start() {
               mode={"outline"}
               onPress={() => navigation("/tora")}
             />
-            <Button label={loadSubmit ?"Lanjutkan" : "Loading..."} onPress={handleSubmit} disable={loadSubmit ? true : false} />
+            <Button label={loadSubmit ? "Loading..." : "Lanjutkan"} onPress={handleSubmit} disable={loadSubmit ? true : false} />
           </div>
         </div>
         {/* end button */}

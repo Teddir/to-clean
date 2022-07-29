@@ -1,7 +1,7 @@
 import React from "react";
 import { useFirebase } from "../components/firebase/FirebaseProvider";
 import cleanImage from "../src/image/cleanImage.png";
-import logo from "../src/svg/logo.svg";
+import logo from "../src/svg/logoBlack.svg";
 import tokorame from "../src/svg/miniTokorame.svg";
 import mySure from "../src/svg/miniMySure.svg";
 import nibras from "../src/svg/miniNibras.svg";
@@ -61,7 +61,7 @@ export default function Landing() {
             </div>
             <div className="rounded-lg shadow-inherit">
               <div
-                className="xl:w-[50vh] xl:h-[40vh] h-[50vh] bg-contain bg-bottom"
+                className="xl:max-w-[50vh] xl:max-h-[40vh] h-[50vh] bg-contain bg-bottom "
                 style={{
                   backgroundImage: `url(${cleanImage})`,
                   backgroundRepeat: "no-repeat",

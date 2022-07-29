@@ -3,7 +3,7 @@ import {
   auth,
   firefunctions,
 } from "../../../components/firebase/FirebaseProvider";
-import logo from "../../../src/svg/logo.svg";
+import logo from "../../../src/svg/logoWhite.svg";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../components/theme";
 
@@ -120,7 +120,7 @@ function AdminAuth() {
       </div>
       {/* end body1 */}
       {/* start body2 */}
-      <div className="max-h-full lg:w-[66%]">
+      <div className="max-h-full">
         <div className="lg:ml-32 ml-12 mr-12 mt-8 lg:mt-4 pb-12">
           {/* start nav */}
           <div className="flex justify-between items-center">
@@ -203,8 +203,8 @@ function AdminAuth() {
         </div>
         {/* end body */}
         {/* start button */}
-        <div className="bottom-0 xl:mt-12 py-6 xss:block">
-          <div className="xs:block flex justify-between relative lg:ml-32 ml-12 mr-12 mt-8 lg:mt-4 pb-12">
+        <div className="bottom-0 xl:mt-12 py-6">
+          <div className="lg:flex md:flex sm:flex justify-between relative lg:ml-32 ml-12 mr-12 mt-8 lg:mt-4 pb-12">
             <Button
               label={"Kembali"}
               icon="back"

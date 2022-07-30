@@ -1,7 +1,7 @@
 import React from "react";
-import logo from "../../src/svg/logo.svg"
+import logo from "../../src/svg/logoWhite.svg"
 import { useNavigate } from "react-router-dom";
-import {Button, Button1} from "../../components/theme";
+import {Button, Button1, SideBarProcess} from "../../components/theme";
 
 function Start() {
   const navigation = useNavigate()
@@ -40,18 +40,11 @@ function Start() {
       <div className="max-h-full w-[34%] bg-gradient-to-b from-trans2 to-trans3 hidden md:block">
         <div className="w-full mx-12 mt-4 pb-12">
           {/* logo */}
-            <div className="flex justify-between items-center">
-              <img src={logo} className="App-logo h-24 w-24" alt="logo" />
-            </div>
-          {/* desc */}
-          <div className="w-[80%] xl:w-[90%] mt-24">
-            <div className="h-[50%]">
-              <h1 className="text-white text-[36px] xl:text-[46px] font-serif font-bold">Hey Clean your place, with <br/> ikhlas!!!</h1>
-            </div>
-            <div className="h-[50%] flex bottom-0 pb-12 items-end fixed">
-              <span className="text-slate-600 font-bold items-center text-md">Tokorame Team @2022</span>
-            </div>
+          <div className="flex justify-between items-center">
+            <img src={logo} className="App-logo h-24 w-24" alt="logo" />
           </div>
+          {/* desc */}
+          <SideBarProcess numberProcess={0} title="Hey Clean your place, with ikhlas!!!"/>
         </div>
       </div>
       {/* end body1 */}
@@ -69,9 +62,7 @@ function Start() {
           </div>
           {/* start nav */}
           <div className="xl:w-[86%] mt-24 xl:mt-18">
-            <div>
-              <span className="textJudul">Masuk untuk melengkapi data kebersihan.</span>
-            </div>
+            <span className="textJudul">Masuk untuk melengkapi data kebersihan.</span>
             <div className="mt-2 xl:w-[70%]">
               <span className="textDesc">
               masuk sesuai dengan status pekerjaan saat ini

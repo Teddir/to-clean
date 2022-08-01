@@ -23,7 +23,7 @@ export default function Index() {
       {/* validasi user longged */}
       {!user ? (
         <>
-          <Route path="/tora" element={<Loading />} />  handle wwarning outlet or component empty when login
+          {/* <Route path="/tora" element={<Loading />} />  handle wwarning outlet or component empty when login */}
           <Route path="tora">
             <Route path="role" element={<ChooseRole />} />
             <Route path="user-login" element={<LoginUser />} />

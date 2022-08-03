@@ -21,10 +21,16 @@ export default function DataProvider(props) {
   const usersRef = firestore.doc(`users/${user?.uid}`);
   const [users, loadingUsers] = useDocumentData(usersRef, {idField: "id"});
   
+  const allUserRef = firestore.collection(`users`).where('role', "==", 'user')
+  const [allUser, loadingallUser] = useCollectionData(allUserRef, {idField:"id"})
+
+  const allAdminRef = firestore.collection(`users`).where('role', "==", 'admin')
+  const [allAdmin, loadingallAdmin] = useCollectionData(allAdminRef, {idField:"id"})
+
   const cleansRef = firestore.collection(`clean`).where('id', "==", user?.uid)
   const [cleans, loadingCleans] = useCollectionData(cleansRef, {idField:"id"})
 
-  if (loadingUsers || loadingCleans) {
+  if (loadingUsers || loadingCleans || loadingallUser || loadingallAdmin) {
     return <Loading/>
   }
   return (
@@ -32,6 +38,10 @@ export default function DataProvider(props) {
       value={{
         usersRef,
         users,
+        allUserRef,
+        allUser,
+        allAdminRef,
+        allAdmin,
         cleansRef,
         cleans,
       }}

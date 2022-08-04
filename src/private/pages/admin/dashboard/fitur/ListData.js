@@ -23,7 +23,7 @@ export default function ListData(props) {
         <table className="table-auto w-full rounded">
             <thead className="p-12">
               <tr className="text-left bg-c2">
-                <th className="pl-8 py-8 text-[18px] font-bold">No</th>
+                <th className="pl-8 py-8 text-[18px] font-bold">Nomor</th>
                 <th className="pl-8 py-8 text-[18px] font-bold">Nama</th>
                 <th className="pl-8 py-8 text-[18px] font-bold">Register</th>
                 <th className="pl-8 py-8 text-[18px] font-bold">Login</th>

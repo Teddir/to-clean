@@ -26,7 +26,6 @@ export default function ListData(props) {
                 <th className="pl-8 py-8 text-[18px] font-bold">Nomor</th>
                 <th className="pl-8 py-8 text-[18px] font-bold">Nama</th>
                 <th className="pl-8 py-8 text-[18px] font-bold">Register</th>
-                <th className="pl-8 py-8 text-[18px] font-bold">Login</th>
               </tr>
             </thead>
             <tbody>
@@ -37,7 +36,6 @@ export default function ListData(props) {
                   <td className="pl-8 pt-8 pb-6 text-[18px] font-semibold">{b + 1}</td>
                   <td className="pl-8 pt-8 pb-6 text-[18px] font-semibold capitalize">{a.username}</td>
                   <td className="pl-8 pt-8 pb-6 text-[18px] font-semibold capitalize">{`${createdTime?.getDate()}-${createdTime?.getMonth()}-${createdTime?.getFullYear()}`}</td>
-                  <td className="pl-8 pt-8 pb-6 text-[18px] font-semibold capitalize">{`${loginTime?.getDate()}-${loginTime?.getMonth()}-${loginTime?.getFullYear()}`}</td>
                 </tr>
               })}
             </tbody>

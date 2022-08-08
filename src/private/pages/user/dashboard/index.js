@@ -18,9 +18,10 @@ function Index() {
   });
 
   return (
-    <div className="min-h-screen max-w-screen-2xl bg-white  xl:bg-contain">
+    <div className="min-h-screen max-w-screen-2xl min-w-[296px] bg-white  xl:bg-contain">
       <div className="xl:px-32 px-4 py-4">
         <Header
+          logoColor={"black"}
           labels={["Start Clean", "Logout"]}
           actions={[
             () => navigation("/tora/user/start"),
@@ -30,41 +31,35 @@ function Index() {
             },
           ]}
         />
-        <div
-          className="text-center mt-6"
-          style={{
-            textAlign: "-webkit-center",
-          }}
-        >
-          <span className="text-[3rem] capitalize font-Pop font-semibold">
-            your job is very hard you must strong ok!
-          </span>
-          <br />
-          <div className="xl:w-[40%]">
+        <div className="text-center">
+          <div
+            className="mt-6"
+          >
+            <span className="text-[3rem] capitalize font-Pop font-semibold">
+              your job is very hard you must strong ok!
+            </span>
+            <br />
             <span className="text-[1.4rem]">
               Design a great experience for your users on the web and mobile
               platforms with Masud. Feel free to
             </span>
           </div>
-        </div>
 
-        <div
-          className="text-center mt-6 flex items-center justify-center cursor-pointer"
-          style={{
-            textAlign: "-webkit-center",
-          }}
-        >
-          <div className="bg-white-icon py-4 px-5 rounded-lg flex justify-between w-[32rem] items-center">
-            <span className="text-[10px] font-Pop">Search your work</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
+          <div
+            className="mt-6 flex justify-center xs:justify-start xss:justify-start   cursor-pointer"
+          >
+            <div className="bg-white-icon py-4 px-5 rounded-lg flex justify-between w-[32rem] items-center">
+              <span className="text-[10px] font-Pop">Search your work</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
           </div>
         </div>
 
@@ -115,7 +110,7 @@ function Index() {
                 Rejected
               </span>
             </div>
-            <div className="flex">
+            <div className="flex xss:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-8 w-8 mr-6"
@@ -139,7 +134,8 @@ function Index() {
         </div>
 
         <div>
-          <div className="grid xl:justify-items-center xl:grid-cols-4 grid-cols-1">
+
+          <div className="grid xl:justify-items-center xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-4 grid-cols-2">
             {cleans
               ?.filter((a) =>
                 clickFilter.status === "all"
@@ -150,9 +146,8 @@ function Index() {
                 const extData = datas?.data[0];
                 return (
                   <div key={index}>
-                    {/* <h1>{datas?.id}</h1> */}
-                    <div>
-                      <div className="p-6 mb-4 bg-white shadow-md rounded-lg w-[22rem]">
+                    <div style={{textAlign:"-webkit-center"}}>
+                      <div className="p-6 xl:mb-4 bg-white xl:shadow-md rounded-lg xl:w-[22rem] md:w-[12rem]">
                         <div
                           id={index}
                           onMouseEnter={(e) => {
@@ -165,7 +160,7 @@ function Index() {
                               setHoverCard({ [index]: defaultImage });
                             }
                           }}
-                          className={`bg-white rounded-md h-[21rem] bg-cover duration-200`}
+                          className={`bg-white rounded-md xl:h-[21rem] h-[8rem] bg-cover duration-200`}
                           style={{
                             backgroundImage: `url(${
                               hoverCard[index] ? hoverCard[index] : defaultImage
@@ -197,6 +192,7 @@ function Index() {
                 );
               })}
           </div>
+          
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { useData } from "../../../../../components/firebase/DataProvider";
 
 const myList = [
   {
@@ -41,9 +42,8 @@ const myList = [
 
 export default function ListKebersihan() {
   const [list, setList] = React.useState({});
-
+  const {cleans} = useData();
   
-
   return (
     <div className={`flex justify-between flex-row duration-300 pb-12 hide-scroll-bar `}>
       {/* start body */}

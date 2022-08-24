@@ -188,15 +188,13 @@ export default function index() {
     <div className="flex max-w-screen-2xl">
       <div className="fixed">
         <div
-          className={`${
-            open ? "w-[26rem]" : "w-[7rem]"
-          } min-h-screen h-screen bg-gradient-to-t from-trans1 to-trans3 relative duration-300  overflow-y-scroll hide-scroll-bar min block`}
+          className={`${open ? "w-[20rem]" : "w-[7rem]"
+            } min-h-screen h-screen bg-gradient-to-t from-trans1 to-trans3 relative duration-300  overflow-y-scroll hide-scroll-bar min-block`}
         >
           <div className="flex justify-between items-center  mb-[10rem] pt-12 px-8">
             <div
-              className={`${
-                open ? "absolute p-4" : "block pl-2"
-              } right-0 bg-none rounded-tl-xl rounded-bl-xl cursor-pointer duration-300`}
+              className={`${open ? "absolute p-4" : "block pl-2"
+                } right-0 bg-none rounded-tl-xl rounded-bl-xl cursor-pointer duration-300`}
               onClick={handleNavPosision}
             >
               {open ? (
@@ -226,9 +224,8 @@ export default function index() {
             <div>
               <img
                 src={logo}
-                className={`App-logo ${
-                  open ? "h-26 w-26" : "h-20 w-20 hidden"
-                }`}
+                className={`App-logo ${open ? "h-26 w-26" : "h-20 w-20 hidden"
+                  }`}
                 alt="logo"
               />
             </div>
@@ -238,22 +235,20 @@ export default function index() {
               return (
                 <div
                   key={index}
-                  className={`${
-                    showMenu
-                      ? data.no === 5 || data.no === 6
-                        ? "hidden"
-                        : ""
+                  className={`${showMenu
+                    ? data.no === 5 || data.no === 6
+                      ? "hidden"
                       : ""
-                  }`}
+                    : ""
+                    }`}
                 >
                   {data.no === 5 || data.no === 6 ? (
                     open ? (
                       <div
-                        className={`${
-                          data.no === 8
-                            ? "lg:fixed  bottom-0 hover:bg-opacity-0"
-                            : "hover:bg-opacity-5"
-                        } flex items-center pl-14 cursor-pointer hover:bg-white`}
+                        className={`${data.no === 8
+                          ? "lg:fixed  bottom-0 hover:bg-opacity-0"
+                          : "hover:bg-opacity-5"
+                          } flex items-center pl-14 cursor-pointer hover:bg-white`}
                         onClick={() => {
                           setMenuActive({
                             data: data,
@@ -266,11 +261,10 @@ export default function index() {
                         <ul className="flex flex-col pl-2 border-l border-white py-6">
                           <li className="pl-10">
                             <a
-                              className={`text-white ${
-                                menuActive?.asalMenu === data.no
-                                  ? "opacity-100"
-                                  : "opacity-50"
-                              } text-[18px]`}
+                              className={`text-white ${menuActive?.asalMenu === data.no
+                                ? "opacity-100"
+                                : "opacity-50"
+                                } text-[18px]`}
                             >
                               {data.nama}
                             </a>
@@ -279,11 +273,10 @@ export default function index() {
                       </div>
                     ) : (
                       <div
-                        className={`${
-                          data.no === 8
-                            ? "lg:fixed  bottom-0 hover:bg-opacity-0"
-                            : "hover:bg-opacity-5"
-                        } flex items-center py-4 cursor-pointer hover:bg-white`}
+                        className={`${data.no === 8
+                          ? "lg:fixed  bottom-0 hover:bg-opacity-0"
+                          : "hover:bg-opacity-5"
+                          } flex items-center py-4 cursor-pointer hover:bg-white`}
                         onClick={() => {
                           setMenuActive({
                             data: data,
@@ -293,15 +286,13 @@ export default function index() {
                         }}
                       >
                         <div
-                          className={`${
-                            data.no === menuActive?.no ? "" : "opacity-0"
-                          } h-12 bg-white w-1.5 rounded-md mr-8`}
+                          className={`${data.no === menuActive?.no ? "" : "opacity-0"
+                            } h-12 bg-white w-1.5 rounded-md mr-8`}
                         />
                         {data.svg}
                         <div
-                          className={`${
-                            open ? "block" : "hidden"
-                          } duration-200 ml-8`}
+                          className={`${open ? "block" : "hidden"
+                            } duration-200 ml-8`}
                         >
                           <h1 className="text-white text-[18px]">
                             {data.nama}
@@ -311,11 +302,7 @@ export default function index() {
                     )
                   ) : (
                     <div
-                      className={`${
-                        data.no === 8
-                          ? "lg:fixed  bottom-0 hover:bg-opacity-0"
-                          : "hover:bg-opacity-5"
-                      } flex items-center py-4 cursor-pointer hover:bg-white`}
+                      className={`hover:bg-opacity-5 first-letter:flex items-center py-4 cursor-pointer hover:bg-white`}
                       onClick={() => {
                         setMenuActive({ data: data, no: data.no });
                         if (data.no === 4) {
@@ -325,8 +312,8 @@ export default function index() {
                             asalMenu: menuActive.alongMenu
                               ? menuActive.alongMenu
                               : menuActive.asalMenu
-                              ? menuActive.asalMenu
-                              : menuActive.no,
+                                ? menuActive.asalMenu
+                                : menuActive.no,
                           });
                           setShowMenu(!showMenu);
                         } else {
@@ -341,24 +328,26 @@ export default function index() {
                       <div className="flex-row flex justify-between items-center w-full">
                         <div className="flex flex-row items-center">
                           <div
-                            className={`${
-                              data.no === menuActive?.no ? "" : "opacity-0"
-                            } h-12 bg-white w-1.5 rounded-md mr-8`}
+                            className={`${data.no === menuActive?.no ? "" : "opacity-0"
+                              } h-12 bg-white w-1.5 rounded-md mr-8`}
                           />
                           {data.svg}
                           <div
-                            className={`${
-                              open ? "block" : "hidden"
-                            } duration-200 ml-8`}
+                            className={`${open ? "block" : "hidden"
+                              } duration-200 ml-8`}
                           >
                             <h1 className="text-white text-[18px]">
                               {data.nama}
                             </h1>
                           </div>
                         </div>
-                        <div className="mr-4">
-                          {showMenu ? data.svgLT : data.svgLB}
-                        </div>
+                        {open && (
+                          <>
+                            <div className="mr-4">
+                              {showMenu ? data.svgLT : data.svgLB}
+                            </div>
+                          </>
+                        )}
                       </div>
                     </div>
                   )}
@@ -369,9 +358,8 @@ export default function index() {
         </div>
       </div>
       <div
-        className={`pt-12 pl-12 min-h-screen ${
-          !open ? "ml-[7rem] w-[89vw]" : "ml-[26rem] w-[72vw]"
-        } duration-200`}
+        className={`pt-12 min-h-screen ${!open ? "ml-[10rem] w-[82vw]" : "ml-[22rem] w-[72vw]"
+          } duration-200`}
       >
         {menuActive?.no === 1 ? (
           <Beranda open={open} />
@@ -380,27 +368,27 @@ export default function index() {
         ) : menuActive?.no === 3 ? (
           <Nilai />
         ) : // membuat validasi childMenu karena menu ke 4 adalah parent
-        menuActive?.no === 4 ? (
-          menuActive?.alongMenu === 1 ? (
-            <Beranda open={open} />
-          ) : menuActive?.alongMenu === 2 ? (
-            <ListKebersihan />
-          ) : menuActive?.alongMenu === 3 ? (
-            <Nilai />
+          menuActive?.no === 4 ? (
+            menuActive?.alongMenu === 1 ? (
+              <Beranda open={open} />
+            ) : menuActive?.alongMenu === 2 ? (
+              <ListKebersihan />
+            ) : menuActive?.alongMenu === 3 ? (
+              <Nilai />
+            ) : menuActive?.asalMenu === 5 ? (
+              <ListData mode="admin" />
+            ) : menuActive?.asalMenu === 6 ? (
+              <ListData mode="user" />
+            ) : (
+              <Settings modal={modal} setModal={setModal} />
+            )
           ) : menuActive?.asalMenu === 5 ? (
             <ListData mode="admin" />
           ) : menuActive?.asalMenu === 6 ? (
             <ListData mode="user" />
           ) : (
             <Settings modal={modal} setModal={setModal} />
-          )
-        ) : menuActive?.asalMenu === 5 ? (
-          <ListData mode="admin" />
-        ) : menuActive?.asalMenu === 6 ? (
-          <ListData mode="user" />
-        ) : (
-          <Settings modal={modal} setModal={setModal} />
-        )}
+          )}
       </div>
       {/* modal */}
       {modal?.status ? <Modal modal={modal} setModal={setModal} /> : null}

@@ -72,9 +72,8 @@ function Index() {
           <div className="flex justify-between items-center py-4">
             <div>
               <span
-                className={`text-[16px] font-semibold mr-4 cursor-pointer ${
-                  clickFilter.status === "pending" ? clickFilter.styling : ""
-                }`}
+                className={`text-[16px] font-semibold mr-4 cursor-pointer ${clickFilter.status === "pending" ? clickFilter.styling : ""
+                  }`}
                 onClick={() =>
                   setClickFilter({
                     status: "pending",
@@ -85,9 +84,8 @@ function Index() {
                 Pending
               </span>
               <span
-                className={`text-[16px] font-semibold mr-4 cursor-pointer ${
-                  clickFilter.status === "approved" ? clickFilter.styling : ""
-                }`}
+                className={`text-[16px] font-semibold mr-4 cursor-pointer ${clickFilter.status === "approved" ? clickFilter.styling : ""
+                  }`}
                 onClick={() =>
                   setClickFilter({
                     status: "approved",
@@ -99,9 +97,8 @@ function Index() {
               </span>
               <span className="text-[16px] font-semibold mr-4">|</span>
               <span
-                className={`text-[16px] font-semibold mr-4 cursor-pointer ${
-                  clickFilter.status === "all" ? clickFilter.styling : ""
-                }`}
+                className={`text-[16px] font-semibold mr-4 cursor-pointer ${clickFilter.status === "all" ? clickFilter.styling : ""
+                  }`}
                 onClick={() =>
                   setClickFilter({
                     status: "all",
@@ -139,7 +136,7 @@ function Index() {
         </div>
 
         <div>
-          <div className="grid xl:justify-items-center xl:grid-cols-4 grid-cols-1">
+          <div className="grid xl:justify-items-center xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
             {cleans
               ?.filter((a) =>
                 clickFilter.status === "all"
@@ -152,7 +149,7 @@ function Index() {
                   <div key={index}>
                     {/* <h1>{datas?.id}</h1> */}
                     <div>
-                      <div className="p-6 mb-4 bg-white shadow-md rounded-lg w-[22rem]">
+                      <div className="p-6 mb-4 bg-white shadow-md rounded-lg w-[16rem] h-[20rem]">
                         <div
                           id={index}
                           onMouseEnter={(e) => {
@@ -165,11 +162,10 @@ function Index() {
                               setHoverCard({ [index]: defaultImage });
                             }
                           }}
-                          className={`bg-white rounded-md h-[21rem] bg-cover duration-200`}
+                          className={`bg-white rounded-md h-[12rem] bg-cover duration-200`}
                           style={{
-                            backgroundImage: `url(${
-                              hoverCard[index] ? hoverCard[index] : defaultImage
-                            })`,
+                            backgroundImage: `url(${hoverCard[index] ? hoverCard[index] : defaultImage
+                              })`,
                             backgroundRepeat: "no-repeat",
                             backgroundPosition: "center",
                             backgroundPositionY: "center",

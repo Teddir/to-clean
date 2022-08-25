@@ -36,7 +36,7 @@ function Index() {
             textAlign: "-webkit-center",
           }}
         >
-          <span className="text-[3rem] capitalize font-Pop font-semibold">
+          <span className="xl:text-[3rem] lg:text-[2rem] capitalize font-Pop font-semibold">
             your job is very hard you must strong ok!
           </span>
           <br />

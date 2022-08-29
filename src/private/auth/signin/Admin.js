@@ -5,7 +5,7 @@ import {
 } from "../../../components/firebase/FirebaseProvider";
 import logo from "../../../src/svg/logoWhite.svg";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../../../components/theme";
+import { Button, MiniSideBarProcess } from "../../../components/theme";
 
 function AdminAuth() {
   const navigation = useNavigate();
@@ -139,23 +139,17 @@ function AdminAuth() {
           </div>
           {/* end nav */}
           {/* start body */}
-          <div className="w-[90%] mt-[3rem] lg:mt-18">
-            <div className="block md:hidden">
-              <div className="flex">
-                <div className="w-[6rem] h-[12px] bg-trans1 opacity-60" />
-                <div className="w-[6rem] h-[12px] border-[1px] border-border opacity-40" />
-                <div className="w-[6rem] h-[12px] border-[1px] border-border opacity-40" />
-              </div>
-            </div>
+          <div className="mt-24 xl:mt-18">
+            <MiniSideBarProcess status={"admin"} />
             <div className="pt-4 md:pt-0">
               <span className="textJudul">
-                Lengkapi data dengan benar okey.
+                Hallo Admin Tokorame semoga <br /> sehat selalu 😊.
               </span>
             </div>
-            <div className="mt-2 lg:w-[70%]">
+            <div className="xl:mt-6 mt-4">
               <span className="textDesc">
                 data yang dimasukkan harus sesuai dengan data yang telah
-                didaftarkan sebelumnya.
+                terdaftar!!
               </span>
             </div>
             {/* textInput */}

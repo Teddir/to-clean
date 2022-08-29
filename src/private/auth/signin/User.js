@@ -4,12 +4,16 @@ import {
   auth,
   firefunctions,
 } from "../../../components/firebase/FirebaseProvider";
-import { Button, SideBarProcess } from "../../../components/theme";
+import {
+  Button,
+  MiniSideBarProcess,
+  SideBarProcess,
+} from "../../../components/theme";
 import logo from "../../../src/svg/logoWhite.svg";
 
 function UserAuth() {
   const navigation = useNavigate();
-  const [loadingSubmit, setLoadingSubmit] = useState(false)
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [datas, setDatas] = useState({
     data: {
       phone: "",
@@ -54,11 +58,11 @@ function UserAuth() {
   };
 
   const handleSubmit = async () => {
-    setLoadingSubmit(true)
+    setLoadingSubmit(true);
     const errortype = validate();
     if (Object.values(errortype).some((message) => message !== "")) {
       setDatas({ ...datas, errortype });
-      setLoadingSubmit(false)
+      setLoadingSubmit(false);
     } else {
       try {
         const userAuth = firefunctions.httpsCallable("user-login"); // API create a custom token
@@ -69,9 +73,9 @@ function UserAuth() {
           try {
             auth.signInWithCustomToken(myData?.token);
             navigation("/tora", { replace: true });
-            setLoadingSubmit(false)
+            setLoadingSubmit(false);
           } catch (error) {
-            setLoadingSubmit(false)
+            setLoadingSubmit(false);
             console.log(error);
             datas.errortype.password = error.message;
           }
@@ -79,7 +83,7 @@ function UserAuth() {
       } catch (error) {
         console.log(error);
         datas.errortype.password = error.message;
-        setLoadingSubmit(false)
+        setLoadingSubmit(false);
       }
     }
   };
@@ -119,23 +123,16 @@ function UserAuth() {
           </div>
           {/* end nav */}
           {/* start body */}
-          <div className="xl:w-[86%] mt-24 lg:mt-18">
-            <div className="block md:hidden">
-              <div className="flex">
-                <div className="w-[6rem] h-[12px] bg-trans1 opacity-60" />
-                <div className="w-[6rem] h-[12px] border-[1px] border-border opacity-40" />
-                <div className="w-[6rem] h-[12px] border-[1px] border-border opacity-40" />
-              </div>
-            </div>
+          <div className="mt-24 xl:mt-18">
+            <MiniSideBarProcess status={"user"} stage={1} />
             <div className="pt-8 md:pt-0">
               <span className="textJudul">
-                Lengkapi data dengan benar okey.
+                Hy kamu yaa kamu! <br /> sehat selalu yaaa 😊.
               </span>
             </div>
-            <div className="mt-2 lg:w-[70%]">
+            <div className="xl:mt-6 mt-4">
               <span className="textDesc">
-                data yang dimasukkan harus sesuai dengan data yang telah
-                didaftarkan sebelumnya.
+                Mohon masukkan data yang sesuai dengan data diri kamu!!
               </span>
             </div>
             {/* textInput */}
@@ -191,7 +188,11 @@ function UserAuth() {
               mode={"outline"}
               onPress={() => navigation("/tora/role")}
             />
-            <Button label={loadingSubmit ? "Loading.." : "Lanjutkan"} onPress={() => handleSubmit()} disable={loadingSubmit} />
+            <Button
+              label={loadingSubmit ? "Loading.." : "Lanjutkan"}
+              onPress={() => handleSubmit()}
+              disable={loadingSubmit}
+            />
           </div>
         </div>
         {/* end button */}

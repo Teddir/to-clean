@@ -223,6 +223,36 @@ export const SideBarProcess = ({ numberProcess, title }) => {
   );
 };
 
+export const MiniSideBarProcess = ({ status, stage }) => {
+  return (
+    <div className="block md:hidden">
+      <div className="flex">
+        {status === "admin" ? (
+          <>
+            <div className="w-[6rem] h-[12px] bg-trans1 opacity-60" />
+          </>
+        ) : (
+          <>
+            {[1, 2, 3].map((a, b) => {
+              return (
+                <div key={b}>
+                  <div
+                    className={`w-[6rem] h-[12px] ${
+                      stage === a
+                        ? "bg-trans1 opacity-60"
+                        : "border-[1px] border-border opacity-40"
+                    }`}
+                  />
+                </div>
+              );
+            })}
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
 export const useSnackBar = () => {
   return (
     <div className="absolute top-0 items-center justify-center">

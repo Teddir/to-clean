@@ -12,51 +12,51 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .buttonPrimary {
-  @apply text-slate-100 text-[14px] font-bold
+  @apply text-slate-100 text-[14px] font-bold;
 }
 
 .textResponsive {
-  @apply lg:text-[18px] md:text-[16px] xs:text-[14px] text-[22px]
+  @apply lg:text-[18px] md:text-[16px] xs:text-[14px] text-[22px];
 }
 
 .textButton {
-  @apply lg:text-[18px] md:text-[16px] xs:text-[16px] text-[14px]
+  @apply lg:text-[18px] md:text-[16px] xs:text-[16px] text-[14px];
 }
 
 .textJudul {
-  @apply font-bold xl:text-[44px] lg:text-[20px] md:text-[42px] xs:text-[32px] text-[24px]
+  @apply font-bold text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl leading-7;
 }
 
 .textDesc {
-  @apply opacity-80 lg:text-[18px] md:text-[14px] xs:text-[16px] text-[18px]
+  @apply opacity-80 text-sm sm:text-sm lg:text-lg xl:text-xl 2xl:text-2xl;
 }
 
 .role-active {
-  @apply shadow-md hover:shadow-none text-purple-500 border-purple-400
+  @apply shadow-md hover:shadow-none text-purple-500 border-purple-400;
 }
 
 .form-active {
-  @apply border-border
+  @apply border-border;
 }
 
 .form-error {
-  @apply border-red-500
+  @apply border-red-500;
 }
 
 .form-default {
-  @apply border-border border-opacity-50
+  @apply border-border border-opacity-50;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -65,34 +65,42 @@ code {
   0% {
     opacity: 0;
     -webkit-transform: translateY(-250%);
-            transform: translateY(-250%); }
+    transform: translateY(-250%);
+  }
   40%,
   60% {
     opacity: 1;
     -webkit-transform: translateY(0);
-            transform: translateY(0); }
+    transform: translateY(0);
+  }
   100% {
     opacity: 0;
     -webkit-transform: translateY(250%);
-            transform: translateY(250%); } }
+    transform: translateY(250%);
+  }
+}
 @keyframes waterfall {
   0% {
     opacity: 0;
     -webkit-transform: translateY(-250%);
-            transform: translateY(-250%); }
+    transform: translateY(-250%);
+  }
   40%,
   60% {
     opacity: 1;
     -webkit-transform: translateY(0);
-            transform: translateY(0); }
+    transform: translateY(0);
+  }
   100% {
     opacity: 0;
     -webkit-transform: translateY(250%);
-            transform: translateY(250%); } }
+    transform: translateY(250%);
+  }
+}
 
 .waterfall div {
   -webkit-animation: waterfall 1.5s infinite;
-          animation: waterfall 1.5s infinite;
+  animation: waterfall 1.5s infinite;
   /* background-color: 'white'; */
   height: 20px;
   left: 50%;
@@ -100,25 +108,30 @@ code {
   opacity: 0;
   position: absolute;
   top: 50%;
-  width: 20px; }
-  .waterfall div:nth-of-type(1) {
-    -webkit-animation-delay: 0.25s;
-            animation-delay: 0.25s;
-    margin-left: -10px; }
-  .waterfall div:nth-of-type(2) {
-    -webkit-animation-delay: 0.5s;
-            animation-delay: 0.5s;
-    margin-left: 15px; }
-  .waterfall div:nth-of-type(3) {
-    -webkit-animation-delay: 0.75s;
-            animation-delay: 0.75s;
-    margin-left: -35px; }
-  .waterfall div:nth-of-type(4) {
-    -webkit-animation-delay: 1s;
-            animation-delay: 1s;
-    margin-left: 40px; }
-  .waterfall div:nth-of-type(5) {
-    -webkit-animation-delay: 1.25s;
-            animation-delay: 1.25s;
-    margin-left: -60px; }
-
+  width: 20px;
+}
+.waterfall div:nth-of-type(1) {
+  -webkit-animation-delay: 0.25s;
+  animation-delay: 0.25s;
+  margin-left: -10px;
+}
+.waterfall div:nth-of-type(2) {
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  margin-left: 15px;
+}
+.waterfall div:nth-of-type(3) {
+  -webkit-animation-delay: 0.75s;
+  animation-delay: 0.75s;
+  margin-left: -35px;
+}
+.waterfall div:nth-of-type(4) {
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+  margin-left: 40px;
+}
+.waterfall div:nth-of-type(5) {
+  -webkit-animation-delay: 1.25s;
+  animation-delay: 1.25s;
+  margin-left: -60px;
+}

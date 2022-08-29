@@ -61,7 +61,7 @@ export default function Landing() {
             </div>
             <div className="rounded-lg shadow-inherit">
               <div
-                className="xl:max-w-[50vh] xl:max-h-[40vh] h-[50vh] bg-contain bg-bottom "
+                className="xl:max-w-[50vh] xl:max-h-[40vh] h-[50vh] xl:w-[50vh] xl:bg-cover bg-contain bg-bottom "
                 style={{
                   backgroundImage: `url(${cleanImage})`,
                   backgroundRepeat: "no-repeat",

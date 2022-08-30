@@ -86,11 +86,11 @@ function Start() {
               onClick={() => handleClick("admin")}
             >
               <div
-                className="mt-16 w-full rounded-xl border-2 border-border border-opacity-20 hover:border-borderSecondary hover:opacity-100 hover:shadow-md"
+                className="mt-16 w-full border-2 border-border border-opacity-20 hover:border-borderSecondary hover:opacity-100 hover:shadow-md"
                 id="role-admin"
               >
                 <div className="p-4 flex items-center">
-                  <div className="bg-pink-200 h-[6rem] w-[6rem] xl:h-[9rem] xl:w-[9rem] rounded-md bg-[url('./src/image/Admin.png')] bg-cover" />
+                  <div className="bg-pink-200 h-[6rem] w-[6rem] xl:h-[9rem] xl:w-[9rem] rounded-sm bg-[url('./src/image/Admin.png')] bg-cover" />
                   <div className="ml-8">
                     <h1 className="text-3xl xl:text-4xl font-bold mb-[12px] ">
                       Admin
@@ -99,7 +99,7 @@ function Start() {
                       className="text-1xl xl:text-2xl opacity-40 group-hover:text-purple-700"
                       id="role-text"
                     >
-                      Khusus seksi kebersihan
+                      Khusus Admin/HRD
                     </span>
                   </div>
                 </div>
@@ -111,17 +111,17 @@ function Start() {
               onClick={() => handleClick("user")}
             >
               <div
-                className="mt-12 w-full rounded-xl border-2 border-border border-opacity-20 hover:border-borderSecondary hover:opacity-100 hover:shadow-md"
+                className="mt-12 w-full border-2 border-border border-opacity-20 hover:border-borderSecondary hover:opacity-100 hover:shadow-md"
                 id="role-user"
               >
                 <div className="p-4 flex items-center">
-                  <div className="bg-pink-200 h-[6rem] w-[6rem] xl:h-[9rem] xl:w-[9rem] rounded-md bg-[url('./src/image/User.png')] bg-cover" />
+                  <div className="bg-pink-200 h-[6rem] w-[6rem] xl:h-[9rem] xl:w-[9rem] rounded-sm bg-[url('./src/image/User.png')] bg-cover" />
                   <div className="ml-8">
                     <h1 className="text-3xl xl:text-4xl font-bold mb-[12px] ">
                       User
                     </h1>
                     <span className="text-1xl xl:text-2xl opacity-40 group-hover:text-purple-700">
-                      Khusus siapa ya? ya kamu.{" "}
+                      Khusus Karyawan/Pegawai
                     </span>
                   </div>
                 </div>

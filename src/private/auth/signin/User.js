@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 import {
   auth,
   firefunctions,
@@ -26,11 +28,16 @@ function UserAuth() {
   const handleChange = (prop) => (event) => {
     setDatas({
       ...datas,
+      errortype: {
+        ...datas.errortype,
+        [prop]: "",
+      },
       data: {
         ...datas.data,
         [prop]: event.target.value,
       },
     });
+    validate();
   };
 
   const validate = () => {
@@ -39,14 +46,14 @@ function UserAuth() {
 
     let newErrors = {};
     // event.preventDefault();
-    if (!datas.data.phone) {
+    if (!datas?.data?.phone) {
       newErrors.phone = "*Phone Wajib Diisi";
       phone.classList.add("form-error");
     } else {
       phone.classList.remove("form-error");
       phone.classList.add("form-active");
     }
-    if (!datas.data.password) {
+    if (!datas?.data?.password) {
       newErrors.password = "*Password Wajib Diisi";
       password.classList.add("form-error");
     } else {
@@ -88,7 +95,7 @@ function UserAuth() {
     }
   };
 
-  // console.log(datas)
+  // console.log(datas);
   return (
     <div className="max-w-screen-2xl min-h-screen flex bg-backgroundWeb">
       {/* start body1 */}
@@ -143,16 +150,42 @@ function UserAuth() {
                     <span className="text-[16px] lg:text-[18px] font-[500] font-sans">
                       Phone
                     </span>
-                    <br />
-                    <input
-                      className="xs:w-full lg:w-[24rem] md:w-[24rem] w-[20rem] text-[16px] text-trans3 h-16 mt-2 bg-backgroundWeb border-2 border-border rounded-md pl-4 border-opacity-30 focus:ring-trans1 focus:ring-1 focus:outline-none focus:border-trans1 focus:border-opacity-50"
-                      placeholder="+628990400112"
-                      type={"text"}
-                      required
-                      onChange={handleChange("phone")}
-                      id="phone"
+                    <br style={{ marginBottom: 6 }} />
+                    <PhoneInput
+                      country={"id"}
+                      // value={this.state.phone}
+                      inputStyle={{
+                        paddingBottom: 24,
+                        paddingTop: 24,
+                        background: "#E5E5E5",
+                        borderWidth: 0,
+                        borderColor: "#b6b6b9",
+                      }}
+                      inputClass="w-full"
+                      containerStyle={{
+                        borderWidth: 2,
+                        borderColor: "#b6b6b9",
+                        // borderRadius:6,
+                      }}
+                      buttonStyle={{
+                        background: "#E5E5E5",
+                      }}
+                      onChange={(phone) => {
+                        setDatas({
+                          ...datas,
+                          errortype: {
+                            ...datas.errortype,
+                            phone: ``,
+                          },
+                          data: {
+                            ...datas.data,
+                            phone: `+${phone}`,
+                          },
+                        });
+                        validate();
+                      }}
                     />
-                    <div className="mt-2 text-red-400 font-semibold">
+                    <div id="phone" className="mt-2 text-red-400 font-semibold">
                       <span>{datas?.errortype?.phone}</span>
                     </div>
                   </div>
@@ -162,7 +195,7 @@ function UserAuth() {
                     </span>
                     <br />
                     <input
-                      className="xs:w-full lg:w-[24rem] md:w-[24rem] w-[20rem] text-[16px] text-trans3 h-16 mt-2 bg-backgroundWeb border-2 border-border rounded-md px-4 border-opacity-30 focus:ring-trans1 focus:ring-1 focus:outline-none focus:border-trans1 focus:border-opacity-50"
+                      className="xl:w-[24rem] w-full text-[16px] text-trans3 h-16 mt-2 bg-backgroundWeb border-2 border-border px-4 border-opacity-30 focus:ring-trans1 focus:ring-1 focus:outline-none focus:border-trans1 focus:border-opacity-50"
                       placeholder="*********"
                       type={"password"}
                       required

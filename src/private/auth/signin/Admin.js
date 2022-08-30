@@ -9,6 +9,7 @@ import { Button, MiniSideBarProcess } from "../../../components/theme";
 
 function AdminAuth() {
   const navigation = useNavigate();
+  const [loadingSubmit, setLoadingSubmit] = React.useState(false);
   const [datas, setDatas] = React.useState({
     data: {
       email: "",
@@ -20,11 +21,16 @@ function AdminAuth() {
   const handleChange = (prop) => (event) => {
     setDatas({
       ...datas,
+      errortype: {
+        ...datas.errortype,
+        [prop]: "",
+      },
       data: {
         ...datas.data,
         [prop]: event.target.value,
       },
     });
+    validate();
   };
 
   const validate = () => {
@@ -34,7 +40,7 @@ function AdminAuth() {
     let newErrors = {};
     // event.preventDefault();
     if (!datas.data.email) {
-      newErrors.email = "*Nama Wajib Diisi";
+      newErrors.email = "*Email Wajib Diisi";
       email.classList.add("form-error");
     } else {
       email.classList.remove("form-error");
@@ -53,18 +59,21 @@ function AdminAuth() {
 
   const handleSubmit = async () => {
     const errortype = validate();
+    setLoadingSubmit(true);
 
     if (Object.values(errortype).some((message) => message !== "")) {
       setDatas({ ...datas, errortype });
+      setLoadingSubmit(false);
     } else {
       setDatas({ ...datas, errortype });
-      console.log(datas);
+      // console.log(datas);
       try {
         if (datas.data.email === "teddirahman@gmail.com") {
           await auth.signInWithEmailAndPassword(
             datas.data.email,
             datas.data.password
           );
+          setLoadingSubmit(false);
           return navigation("/tora", { replace: true });
         }
         const userAuth = firefunctions.httpsCallable("user-login"); // API create a custom token
@@ -81,9 +90,11 @@ function AdminAuth() {
             datas.errortype.password = error.message;
           }
         }
+        setLoadingSubmit(false);
       } catch (error) {
         console.log(error);
         datas.errortype.password = error.message;
+        setLoadingSubmit(false);
       }
     }
   };
@@ -158,12 +169,12 @@ function AdminAuth() {
                 <div className="xl:flex">
                   <div className="mb-8">
                     <span className="text-[16px] lg:text-[18px] font-[500] font-sans">
-                      Email / phone
+                      Email
                     </span>
                     <br />
                     <input
-                      className="lg:w-[24rem] md:w-[24rem] w-[20rem] text-[16px] text-trans3 h-16 mt-2 bg-backgroundWeb border-2 border-border rounded-md pl-4 border-opacity-30 focus:ring-trans1 focus:ring-1 focus:outline-none focus:border-trans1 focus:border-opacity-50"
-                      placeholder="Teddi Rahman"
+                      className="xl:w-[24rem] w-full text-[16px] text-trans3 h-16 mt-2 bg-backgroundWeb border-2 border-border  pl-4 border-opacity-30 focus:ring-trans1 focus:ring-1 focus:outline-none focus:border-trans1 focus:border-opacity-50"
+                      placeholder="wadidawKece@gmail.com"
                       type={"email"}
                       required
                       onChange={handleChange("email")}
@@ -179,7 +190,7 @@ function AdminAuth() {
                     </span>
                     <br />
                     <input
-                      className="lg:w-[24rem] md:w-[24rem] w-[20rem] text-[16px] text-trans3 h-16 mt-2 bg-backgroundWeb border-2 border-border rounded-md px-4 border-opacity-30 focus:ring-trans1 focus:ring-1 focus:outline-none focus:border-trans1 focus:border-opacity-50"
+                      className="xl:w-[24rem] w-full text-[16px] text-trans3 h-16 mt-2 bg-backgroundWeb border-2 border-border  px-4 border-opacity-30 focus:ring-trans1 focus:ring-1 focus:outline-none focus:border-trans1 focus:border-opacity-50"
                       placeholder="*********"
                       type={"password"}
                       required
@@ -205,7 +216,11 @@ function AdminAuth() {
               mode={"outline"}
               onPress={() => navigation("/tora/role")}
             />
-            <Button label={"Lanjutkan"} onPress={() => handleSubmit()} />
+            <Button
+              label={loadingSubmit ? "Loading.." : "Lanjutkan"}
+              onPress={() => handleSubmit()}
+              disable={loadingSubmit}
+            />
           </div>
         </div>
         {/* end button */}

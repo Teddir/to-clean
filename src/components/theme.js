@@ -140,8 +140,8 @@ export const Button = ({ onPress, mode, disable, label, icon }) => {
   const textColor = [disable ? "text-border" : modeText];
   const cursorPointer = [disable ? "cursor-not-allowed" : "cursor-pointer"];
   const shadow = [disable ? "" : "hover:shadow-2xl"];
-  const styleButton = `py-3 px-6 justify-center items-center border-2 ${borderColor} flex ${cursorPointer} ${bgColor} ${textColor} ${shadow}`;
-  const styleButtonOutline = `py-3 px-6 justify-center items-center border-2 flex ${cursorPointer} ${borderColor} ${textColor} ${shadow}`;
+  const styleButton = `xl:py-3 xl:px-6 py-2 px-3 justify-center items-center border-2 ${borderColor} flex ${cursorPointer} ${bgColor} ${textColor} ${shadow}`;
+  const styleButtonOutline = `xl:py-3 xl:px-6 py-2 px-3 justify-center items-center border-2 flex ${cursorPointer} ${borderColor} ${textColor} ${shadow}`;
   const nilaiStyle = mode === "outline" ? styleButtonOutline : styleButton;
   return (
     <div
@@ -161,7 +161,7 @@ export const Button = ({ onPress, mode, disable, label, icon }) => {
           </svg>
         </div>
       )}
-      <span className={`xl:text-[1rem] text-[1rem] font-bold`}>{label}</span>
+      <span className={`xl:text-[1rem] text-[11px] text-center items-center font-bold`}>{label}</span>
     </div>
   );
 };
@@ -285,36 +285,94 @@ export const Header = ({ labels, actions, logoColor }) => {
   const [action, otherAction] =
     typeof actions === "function" ? [actions] : actions;
   return (
-    <div className="w-full xss:px-4 ">
-      <div className="flex justify-between items-center">
-        <img
-          src={logoColor === "black" ? logoBlack : logoWhite}
-          className="App-logo h-16 w-16 xl:h-20 xl:w-20"
-          alt="logo"
-        />
-        {labels ? (
-          <>
-            <div className="flex xss:hidden">
-              {otherLabel && (
-                <div className="mr-3">
-                  <Button
-                    label={otherLabel}
-                    mode="outline"
-                    onPress={otherAction}
-                  />
+    <>
+      <div className="w-full xss:px-4 ">
+        <div className="flex justify-between items-center">
+          <img
+            src={logoColor === "black" ? logoBlack : logoWhite}
+            className="App-logo h-16 w-16 xl:h-20 xl:w-20"
+            alt="logo"
+          />
+          {labels ? (
+            <>
+              <div className="flex xss:hidden">
+                {otherLabel && (
+                  <div className="mr-3">
+                    <Button
+                      label={otherLabel}
+                      mode="outline"
+                      onPress={otherAction}
+                    />
+                  </div>
+                )}
+                <div>
+                  <Button label={label} onPress={action} />
                 </div>
-              )}
-              <div>
-                <Button label={label} onPress={action} />
               </div>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="h-[1rem] w-[4rem] xl:w-[6rem] bg-gradient-to-r from-white to-white-icon" />
-          </>
-        )}
+            </>
+          ) : (
+            <>
+              <div className="h-[1rem] w-[4rem] xl:w-[6rem] bg-gradient-to-r from-white to-white-icon" />
+            </>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
+
+export function DropDown() {
+  const [show, setShow] = React.useState(false)
+  return (
+    <div className="relative inline-block text-left mr-3">
+          <div>
+            <button
+              type="button"
+              className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100"
+              id="menu-button"
+              aria-expanded="true"
+              aria-haspopup="true"
+              onClick={() => setShow(!show)}
+            >
+              Menu
+              <svg
+                className="-mr-1 ml-2 h-5 w-5"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div
+            className={`absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-10 ${!show ? "hidden" : 'block'}`}
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="menu-button"
+          >
+            <div className="py-1" role="none">
+              <a
+                href="#"
+                className="text-gray-700 block px-4 py-2 text-sm"
+                role="menuitem"
+              >
+                Start Clean
+              </a>
+              <form method="POST" action="#" role="none">
+                <button
+                  type="submit"
+                  className="text-gray-700 block w-full px-4 py-2 text-left text-sm"
+                  role="menuitem"
+                >
+                  Sign out
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+  )
+}

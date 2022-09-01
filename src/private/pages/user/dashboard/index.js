@@ -18,7 +18,7 @@ function Index() {
   });
 
   return (
-    <div className="min-h-screen max-w-screen-2xl bg-white  xl:bg-contain">
+    <div className="min-h-screen min-w-[120px] max-w-screen-2xl bg-white  xl:bg-contain">
       <div className="xl:px-32 px-4 py-4">
         <Header
           labels={["Start Clean", "Logout"]}
@@ -31,18 +31,22 @@ function Index() {
           ]}
         />
         <div
-          className="text-center mt-6"
           style={{
-            textAlign: "-webkit-center",
+            marginTop:24,
+            marginBottom:24,
+            alignItems:"center",
+            justifyContent:"center",
+            textAlign:"center"
           }}
         >
-          <span className="xl:text-[3rem] lg:text-[2rem] capitalize font-Pop font-semibold">
-            your job is very hard you must strong ok!
-          </span>
-          <br />
-          <div className="xl:w-[40%]">
-            <span className="text-[1.4rem]">
-              Design a great experience for your users on the web and mobile
+          <div className="mb-4">
+            <span className="textJudul font-Pop" style={{lineHeight:1.4}}>
+              your job is very hard you must <br className="xl:hidden"/> strong hhe!
+            </span>
+          </div>
+          <div>
+            <span className="textDesc text-[1.4rem]" style={{lineHeight:1.3}}>
+              Design a great experience for your users on the web <br/> and mobile
               platforms with Masud. Feel free to
             </span>
           </div>
@@ -55,7 +59,7 @@ function Index() {
           }}
         >
           <div className="bg-white-icon py-4 px-5 rounded-lg flex justify-between w-[32rem] items-center">
-            <span className="text-[10px] font-Pop">Search your work</span>
+            <span className="textDesc text-slate-700 font-Pop">Search your work</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
@@ -68,7 +72,7 @@ function Index() {
           </div>
         </div>
 
-        <div className="mt-4 mb-2">
+        <div className="mt-4 mb-5">
           <div className="flex justify-between items-center py-4">
             <div>
               <span
@@ -135,8 +139,8 @@ function Index() {
           </div>
         </div>
 
-        <div>
-          <div className="grid xl:justify-items-center xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+        <div >
+          <div className="flex-wrap flex items-center justify-center">
             {cleans
               ?.filter((a) =>
                 clickFilter.status === "all"
@@ -146,10 +150,10 @@ function Index() {
               .map((datas, index) => {
                 const extData = datas?.data[0];
                 return (
-                  <div key={index}>
+                  <div key={index} className="mr-5">
                     {/* <h1>{datas?.id}</h1> */}
                     <div>
-                      <div className="p-6 mb-4 bg-white shadow-md rounded-lg w-[16rem] h-[20rem]">
+                      <div className="py-6 px-4 mb-4 bg-white shadow-md rounded-lg xl:w-[18rem] md:w-[13rem] smm:w-[12.5rem] w-[12.7rem] h-[21rem]">
                         <div
                           id={index}
                           onMouseEnter={(e) => {

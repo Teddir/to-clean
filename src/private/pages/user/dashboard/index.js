@@ -140,7 +140,7 @@ function Index() {
         </div>
 
         <div >
-          <div className="flex-wrap flex items-center justify-center">
+        <div className="grid xl:justify-items-center xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
             {cleans
               ?.filter((a) =>
                 clickFilter.status === "all"

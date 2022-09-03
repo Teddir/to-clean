@@ -140,7 +140,7 @@ function Index() {
         </div>
 
         <div >
-        <div className="grid xl:justify-items-center xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+        <div className="grid xl:justify-items-center xl:grid-cols-5 lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-4 smm:grid-cols-3 grid-cols-2">
             {cleans
               ?.filter((a) =>
                 clickFilter.status === "all"
@@ -153,7 +153,7 @@ function Index() {
                   <div key={index} className="mr-5">
                     {/* <h1>{datas?.id}</h1> */}
                     <div>
-                      <div className="py-6 px-4 mb-4 bg-white shadow-md rounded-lg xl:w-[18rem] md:w-[13rem] smm:w-[12.5rem] w-[12.7rem] h-[21rem]">
+                      <div className="py-6 px-4 mb-4 bg-white shadow-md rounded-lg lg:w-[13.5rem] xl:w-[18rem] xl:h-[23rem] md:w-[12.5rem] smm:w-[12.5rem] w-[12.7rem] h-[21rem]">
                         <div
                           id={index}
                           onMouseEnter={(e) => {
@@ -166,7 +166,7 @@ function Index() {
                               setHoverCard({ [index]: defaultImage });
                             }
                           }}
-                          className={`bg-white rounded-md h-[12rem] bg-cover duration-200`}
+                          className={`bg-white rounded-md xl:h-[15rem] h-[12rem] bg-cover duration-200`}
                           style={{
                             backgroundImage: `url(${hoverCard[index] ? hoverCard[index] : defaultImage
                               })`,

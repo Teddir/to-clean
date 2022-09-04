@@ -153,7 +153,7 @@ function Index() {
                   <div key={index} className="mr-5">
                     {/* <h1>{datas?.id}</h1> */}
                     <div>
-                      <div className="py-6 px-4 mb-4 bg-white shadow-md rounded-lg lg:w-[13.5rem] xl:w-[18rem] xl:h-[23rem] md:w-[12.5rem] smm:w-[12.5rem] w-[12.7rem] h-[21rem]">
+                      <div className="py-6 px-4 mb-4 bg-white shadow-md rounded-lg xl:h-[23rem] h-[21rem] xl:w-[18rem]">
                         <div
                           id={index}
                           onMouseEnter={(e) => {

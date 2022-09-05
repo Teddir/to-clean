@@ -321,7 +321,7 @@ export const Header = ({ labels, actions, logoColor }) => {
   );
 };
 
-export function DropDown() {
+export function DropDownOld() {
   const [show, setShow] = React.useState(false)
   return (
     <div className="relative inline-block text-left mr-3">
@@ -371,6 +371,35 @@ export function DropDown() {
                   Sign out
                 </button>
               </form>
+            </div>
+          </div>
+        </div>
+  )
+}
+
+export function DropDown({isShow, list}) {
+  return (
+    <div className="relative inline-block text-left mr-3">
+          <div
+            className={`absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-10 ${!isShow ? "hidden" : 'block'}`}
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="menu-button"
+          >
+            <div className="py-1" role="none">
+              {list?.map((a, b) => {
+                return (
+                  <div key={b}>
+                    <a
+                      href="#"
+                      className="text-gray-700 block px-4 py-2 text-sm"
+                      role="menuitem"
+                    >
+                      {a?.title}
+                    </a>
+                  </div>
+                )
+              })}
             </div>
           </div>
         </div>

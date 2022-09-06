@@ -30,7 +30,6 @@ function AdminAuth() {
         [prop]: event.target.value,
       },
     });
-    validate();
   };
 
   const validate = () => {

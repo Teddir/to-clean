@@ -37,7 +37,6 @@ function UserAuth() {
         [prop]: event.target.value,
       },
     });
-    validate();
   };
 
   const validate = () => {
@@ -182,7 +181,6 @@ function UserAuth() {
                             phone: `+${phone}`,
                           },
                         });
-                        validate();
                       }}
                     />
                     <div id="phone" className="mt-2 text-red-400 font-semibold">

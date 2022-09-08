@@ -286,7 +286,7 @@ export const Header = ({ labels, actions, logoColor }) => {
     typeof actions === "function" ? [actions] : actions;
   return (
     <>
-      <div className="w-full xss:px-4 ">
+      <div className="w-full ">
         <div className="flex justify-between items-center">
           <img
             src={logoColor === "black" ? logoBlack : logoWhite}
@@ -295,7 +295,7 @@ export const Header = ({ labels, actions, logoColor }) => {
           />
           {labels ? (
             <>
-              <div className="flex xss:hidden">
+              <div className="flex">
                 {otherLabel && (
                   <div className="mr-3">
                     <Button
@@ -403,5 +403,13 @@ export function DropDown({isShow, list}) {
             </div>
           </div>
         </div>
+  )
+}
+
+export function Modal() {
+  return (
+    <div className="absolute w-screen min-h-screen h-screen bg-slate-900 bg-opacity-60 overflow-y-scroll hide-scroll-bar">
+      <h1>ini modal</h1>
+    </div>
   )
 }

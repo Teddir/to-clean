@@ -9,6 +9,26 @@
 .hide-scroll-bar::-webkit-scrollbar {
   display: none;
 }
+.disable-scroll {
+  /* disable scrollbar on both x and y axis */
+  overflow: hidden;
+
+  /* disable scrollbar on x-axis only */
+  overflow-x: hidden;
+
+  /* disable scrollbar on y-axis only */
+  overflow-y: hidden;
+
+  /* disable scroll */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* OPTIONAL: none of dom element will be click-able */
+  pointer-events: none;
+}
 
 body {
   margin: 0;

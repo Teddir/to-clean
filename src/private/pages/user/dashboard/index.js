@@ -36,8 +36,8 @@ function Index() {
   );
 
   return (
-    <div className="min-h-screen min-w-[120px] max-w-screen-2xl bg-white  xl:bg-contain ">
-      <div className="xl:px-32 lg:px-32 md:px-32 sm:px-32 smm:px-20 px-6 py-4">
+    <div className={`min-h-screen min-w-[120px] max-w-screen-2xl bg-white xl:bg-contain overflow-y-scroll`}>
+      <div className={`xl:px-32 lg:px-32 md:px-32 sm:px-32 smm:px-20 px-6 py-4 ${showModal?.status ? 'disable-scroll' : ''}`}>
         <Header
           labels={["Start Clean", "Logout"]}
           actions={[
@@ -267,43 +267,48 @@ function Index() {
       </div>
 
       {/* modal */}
-      <div className={`${showModal?.status ? 'block' : 'hidden'} fixed top-0 min-h-screen h-screen w-screen bg-slate-900 bg-opacity-60 overflow-y-scroll`}>
+      <div className={`${showModal?.status ? 'block' : 'hidden'} fixed top-0 min-h-screen h-screen w-screen bg-slate-900 bg-opacity-60 overflow-y-scroll `}>
         <div onClick={() => setShowModal({
           status:false,
           data:{}
-        })} className="absolute top-12 right-12 cursor-pointer">
+        })} className="absolute top-12 right-12 xs:right-6 cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            className="w-8 h-8"
+            className="w-8 h-8 xss:bg-slate-500 rounded-full"
             color="white"
             strokeWidth={2}
           >
             <path d="M6 18L18 6M6 6l12 12" />
           </svg>
         </div>
-        <div className="px-[14rem] py-12 min-h-screen h-screen justify-center items-center">
-          <div className="bg-white max-h-full">
-            <div className="grid grid-cols-2">
-              <img
-                src={showModal?.data?.thumbnail}
-                alt="hello img"
-                className="h-[89vh] bg-cover"
-              />
-              <div className="border-l-[1px] h-[89vh] border-slate-200">
+        <div className="px-[16rem] sm:px-[12rem] smm:px-[10rem] xs:px-[3rem] xss:px-[2rem] py-4  justify-center items-center">
+          <div className="bg-white">
+            <div className="flex flex-row justify-center items-center">
+              <div className="xl:w-[50%] flex justify-center smm:hidden xs:hidden xss:hidden">
+                <img
+                  src={showModal?.data?.thumbnail}
+                  alt="hello img"
+                  className="h-[100%] bg-cover"
+                />
+              </div>
+              <div className="border-l-[1px] xl:w-[50%] w-[100%] border-slate-200">
                 <div className="px-6 flex-row flex items-center justify-between my-4">
                   <div className="flex-row flex items-center">
                     <div
-                      className="w-12 h-12 rounded-full mr-6"
+                      className="w-12 h-12 rounded-full mr-6 bg-cover"
                       style={{
                         backgroundImage: `url(${defaultImgProfile})`,
                         backgroundRepeat: "no-repeat",
-                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        backgroundPositionY: "center",
                       }}
                     />
-                    <span className="text-[16px] font-semibold">HRD Tokorame (John Do) </span>
+                    <div className="xss:w-[60%] xss:truncate">
+                      <span className="text-[16px] font-semibold">HRD Tokorame (John Do) </span>
+                    </div>
                   </div>
                   <div>
                     <svg
@@ -311,7 +316,7 @@ function Index() {
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
-                      className="w-8 h-8"
+                      className="w-8 h-8 xss:hidden"
                       strokeWidth={2}
                     >
                       <path d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
@@ -319,8 +324,15 @@ function Index() {
                   </div>
                 </div>
                 <div className="border-b-[1px] h-1 w-full border-slate-200" />
-                <div className="px-6 my-4 overflow-hidden overflow-y-scroll h-[67%]">
-                  <div className="flex-row flex">
+                <div className="overflow-hidden h-[70vh] overflow-y-scroll">
+                  <div className="w-full items-center justify-center hidden smm:flex xs:flex xss:flex">
+                  <img
+                    src={showModal?.data?.thumbnail}
+                    alt="hello img"
+                    className="h-[100%] bg-cover"
+                  />
+                  </div>
+                  <div className="px-6 my-4 flex-row flex mt-6">
                     <div className="w-18">
                       <div
                         className="w-12 h-12 rounded-full mr-6"

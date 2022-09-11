@@ -208,7 +208,8 @@ function Index() {
         <div>
           <div className="grid xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-3 smm:grid-cols-2 xss:grid-cols-1 grid-cols-2">
             {isFilter?.map((datas, index) => {
-              const extData = datas?.data[0];
+              let extData = datas?.data[0];
+              extData.status = datas.status
               const myImage = hoverCard?.[index];
               return (
                 <div key={index} onClick={() => setShowModal({status:true, data:extData})}>
@@ -395,7 +396,7 @@ function Index() {
                   </div>
                   <div className="my-4">
                     <div>
-                      <span className="text-[13px] font-bold">Good Job</span><br/>
+                      <span className="text-[13px] font-bold capitalize">{showModal?.data?.status}</span><br/>
                     </div>
                     <div className="my-[1px]">
                       <span className="text-[10px] uppercase text-slate-400">1 day ago</span>

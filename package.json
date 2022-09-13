@@ -12,6 +12,7 @@
     "firebase": "8.6.3",
     "notistack": "^2.0.5",
     "react": "^18.1.0",
+    "react-device-detect": "^2.2.2",
     "react-dom": "^18.1.0",
     "react-firebase-hooks": "3.0.4",
     "react-phone-input-2": "^2.15.1",

@@ -1,4 +1,12 @@
 import React from "react";
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isAndroid,
+  isMobileOnly,
+  isMobile,
+} from "react-device-detect";
 import { useData } from "../../../../components/firebase/DataProvider";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../../../components/firebase/FirebaseProvider";
@@ -14,7 +22,7 @@ function Index() {
   const navigation = useNavigate();
   const [showPopUpFilter, setShowPopUpFilter] = React.useState(false);
   const [showModal, setShowModal] = React.useState({
-    status:false
+    status: false,
   });
   const [hoverCard, setHoverCard] = React.useState(defaultImage);
   const [textFilter, setTextFilter] = React.useState("");
@@ -22,6 +30,8 @@ function Index() {
     status: "all",
     styling: ["text-blue-500"],
   });
+
+  console.log(isAndroid, isMobileOnly);
 
   React.useEffect(() => {
     cleans?.map((_, b) => {
@@ -36,8 +46,14 @@ function Index() {
   );
 
   return (
-    <div className={`min-h-screen min-w-[120px] max-w-screen-2xl bg-white xl:bg-contain overflow-y-scroll`}>
-      <div className={`xl:px-32 lg:px-32 md:px-32 sm:px-32 smm:px-20 px-6 py-4 ${showModal?.status ? 'disable-scroll' : ''}`}>
+    <div
+      className={`min-h-screen min-w-[120px] max-w-screen-2xl bg-white xl:bg-contain overflow-y-scroll`}
+    >
+      <div
+        className={`xl:px-32 lg:px-32 md:px-32 sm:px-32 smm:px-20 px-6 py-4 ${
+          showModal?.status ? "disable-scroll" : ""
+        }`}
+      >
         <Header
           labels={["Start Clean", "Logout"]}
           actions={[
@@ -58,6 +74,12 @@ function Index() {
           }}
         >
           <div className="mb-4">
+            <BrowserView>
+              <h1>This is rendered only in browser</h1>
+            </BrowserView>
+            <MobileView>
+              <h1>This is rendered only on mobile</h1>
+            </MobileView>
             <span className="textJudul font-Pop" style={{ lineHeight: 1.4 }}>
               Pahlawan kebersihan pastinya <br className="xl:hidden" /> strong,
               kuat dong!
@@ -209,10 +231,13 @@ function Index() {
           <div className="grid xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-3 smm:grid-cols-2 xss:grid-cols-1 grid-cols-2">
             {isFilter?.map((datas, index) => {
               let extData = datas?.data[0];
-              extData.status = datas.status
+              extData.status = datas.status;
               const myImage = hoverCard?.[index];
               return (
-                <div key={index} onClick={() => setShowModal({status:true, data:extData})}>
+                <div
+                  key={index}
+                  onClick={() => setShowModal({ status: true, data: extData })}
+                >
                   {/* <h1>{datas?.id}</h1> */}
                   <div>
                     <div className="py-6 px-4 mb-4 bg-white shadow-md rounded-lg xl:h-[23rem] lg:h-[23rem] md:h-[24rem] smm:h-[24rem] xss:h-[26rem] h-[21rem] xl:w-[18rem] ">
@@ -249,7 +274,12 @@ function Index() {
                           </span>
                         </div>
                         <div>
-                          <span onClick={() => setShowModal({status:true, data:extData})} className="text-slate-300 hover:text-pink-400 cursor-pointer">
+                          <span
+                            onClick={() =>
+                              setShowModal({ status: true, data: extData })
+                            }
+                            className="text-slate-300 hover:text-pink-400 cursor-pointer"
+                          >
                             Detail
                           </span>
                           <span className="text-slate-300"> | </span>
@@ -268,11 +298,20 @@ function Index() {
       </div>
 
       {/* modal */}
-      <div className={`${showModal?.status ? 'block' : 'hidden'} fixed top-0 min-h-screen h-screen w-screen bg-slate-900 bg-opacity-60 overflow-y-scroll `}>
-        <div onClick={() => setShowModal({
-          status:false,
-          data:{}
-        })} className="absolute top-12 right-12 xs:right-6 cursor-pointer">
+      <div
+        className={`${
+          showModal?.status ? "block" : "hidden"
+        } fixed top-0 min-h-screen h-screen w-screen bg-slate-900 bg-opacity-60 overflow-y-scroll `}
+      >
+        <div
+          onClick={() =>
+            setShowModal({
+              status: false,
+              data: {},
+            })
+          }
+          className="absolute top-12 right-12 xs:right-6 cursor-pointer"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -308,7 +347,9 @@ function Index() {
                       }}
                     />
                     <div className="xss:w-[60%] xss:truncate">
-                      <span className="text-[16px] font-semibold">HRD Tokorame (John Do) </span>
+                      <span className="text-[16px] font-semibold">
+                        HRD Tokorame (John Do){" "}
+                      </span>
                     </div>
                   </div>
                   <div>
@@ -327,11 +368,11 @@ function Index() {
                 <div className="border-b-[1px] h-1 w-full border-slate-200" />
                 <div className="overflow-hidden h-[70vh] overflow-y-scroll">
                   <div className="w-full items-center justify-center hidden smm:flex xs:flex xss:flex">
-                  <img
-                    src={showModal?.data?.thumbnail}
-                    alt="hello img"
-                    className="h-[100%] bg-cover"
-                  />
+                    <img
+                      src={showModal?.data?.thumbnail}
+                      alt="hello img"
+                      className="h-[100%] bg-cover"
+                    />
                   </div>
                   <div className="px-6 my-4 flex-row flex mt-6">
                     <div className="w-18">
@@ -346,14 +387,14 @@ function Index() {
                     </div>
                     <div className="mt-2">
                       <span className="text-[14px] font-semibold">
-                      HRD Tokorame (John Do) {""}
+                        HRD Tokorame (John Do) {""}
                       </span>
                       <span className="text-[14px]">
                         Sejarah mencatat, tidak sedikit ulama dari kalangan
                         wanita. Ini sebuah pesan, Allah bisa membukakan pintu
-                        kepada para wanita <br /><br /> untuk bermain di level yang
-                        lebih tinggi; memberikan manfaat besar kepada umat.{" "}
-                        <br />
+                        kepada para wanita <br />
+                        <br /> untuk bermain di level yang lebih tinggi;
+                        memberikan manfaat besar kepada umat. <br />
                         <br /> Tiada sulit bagi Allah untuk memberikan kita
                         kesempatan menjadi bermanfaat bagi keluarga kita, rumah
                         tangga kita, dan seterusnya.
@@ -370,11 +411,11 @@ function Index() {
                           <div key={b}>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              fill={b < 4 ? "yellow" : 'none'}
+                              fill={b < 4 ? "yellow" : "none"}
                               viewBox="0 0 24 24"
                               stroke="currentColor"
                               className="w-8 h-8"
-                              color={b < 4 ? "yellow" : 'none'}
+                              color={b < 4 ? "yellow" : "none"}
                             >
                               <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
                             </svg>
@@ -396,10 +437,15 @@ function Index() {
                   </div>
                   <div className="my-4">
                     <div>
-                      <span className="text-[13px] font-bold capitalize">{showModal?.data?.status}</span><br/>
+                      <span className="text-[13px] font-bold capitalize">
+                        {showModal?.data?.status}
+                      </span>
+                      <br />
                     </div>
                     <div className="my-[1px]">
-                      <span className="text-[10px] uppercase text-slate-400">1 day ago</span>
+                      <span className="text-[10px] uppercase text-slate-400">
+                        1 day ago
+                      </span>
                     </div>
                   </div>
                 </div>

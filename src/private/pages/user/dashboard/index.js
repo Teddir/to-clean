@@ -1,12 +1,4 @@
 import React from "react";
-import {
-  BrowserView,
-  MobileView,
-  isBrowser,
-  isAndroid,
-  isMobileOnly,
-  isMobile,
-} from "react-device-detect";
 import { useData } from "../../../../components/firebase/DataProvider";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../../../components/firebase/FirebaseProvider";
@@ -31,7 +23,6 @@ function Index() {
     styling: ["text-blue-500"],
   });
 
-  console.log(isAndroid, isMobileOnly);
 
   React.useEffect(() => {
     cleans?.map((_, b) => {
@@ -74,12 +65,6 @@ function Index() {
           }}
         >
           <div className="mb-4">
-            <BrowserView>
-              <h1>This is rendered only in browser</h1>
-            </BrowserView>
-            <MobileView>
-              <h1>This is rendered only on mobile</h1>
-            </MobileView>
             <span className="textJudul font-Pop" style={{ lineHeight: 1.4 }}>
               Pahlawan kebersihan pastinya <br className="xl:hidden" /> strong,
               kuat dong!

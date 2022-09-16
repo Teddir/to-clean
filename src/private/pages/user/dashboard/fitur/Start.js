@@ -13,12 +13,25 @@ import {
 import resizeImage from "../../../../../utils/resizeImage";
 import { BrowserView, MobileView } from "react-device-detect";
 
-const defaultData = [
-  {
-    id: 0,
-    nama: "",
-  },
-];
+function UiWeb({}) {
+  const navigation = useNavigate();
+  return (
+    <div className="min-w-max min-h-screen flex bg-backgroundWeb justify-center items-center">
+      <div className="bg-white border-2 rounded-md shadow-inner p-[24px]">
+        <img src="https://img.freepik.com/free-vector/throw-down-concept-illustration_114360-4160.jpg?w=740&t=st=1663342924~exp=1663343524~hmac=a7c80fb05391a07c7a52ab60af99edc89512016b5872c69f9a27b5b386f401ad" alt="image" className="w-[25rem]" />
+        <div className="text-center my-6">
+          <h1>Maaf proses pekerjaan tidak bisa melalui laptop/monitor <br/> silahkan akses via seluler</h1>
+        </div>
+        <div>
+          <Button
+          label={"Ok! saya mengerti"}
+          onPress={() => navigation("/tora")}
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
 
 function Start() {
   const navigation = useNavigate();
@@ -154,7 +167,7 @@ function Start() {
   return (
     <>
       <BrowserView>
-        <h1>hello web wadidaw :)</h1>
+        <UiWeb/>
       </BrowserView>
       <MobileView>
         <div className="max-h-full min-h-screen max-w-full flex bg-backgroundWeb">

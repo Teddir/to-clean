@@ -81,7 +81,7 @@ function Start() {
       if (files.length !== 0) {
         const file = files[0];
         if (file.size >= 1000000) {
-          return alert(`file anda ${file.size} terlalu besar > 10000KB`);
+          return alert(`file anda ${file.size} terlalu besar > 1MB`);
         }
         const newUrl = URL.createObjectURL(file);
         setListCardImage((datas) => {
@@ -102,7 +102,7 @@ function Start() {
   const handleSubmit = async () => {
     setLoadSubmit(true);
     if (listCardImage.length <= 0) {
-      alert("silahkan lengkapi data terlebih dahulu > 1");
+      alert("silahkan lengkapi data terlebih dahulu");
       setLoadSubmit(false);
       return;
     }
@@ -167,7 +167,6 @@ function Start() {
             role: users?.role,
             id: users?.id,
           };
-
           const response = await cleansCollection.add(datas);
           navigation(`/tora/user/finish/${response.id}`);
           setLoadSubmit(false);
@@ -181,10 +180,10 @@ function Start() {
 
   return (
     <>
-      <BrowserView>
+      {/* <BrowserView>
         <UiWeb />
-      </BrowserView>
-      <MobileView>
+      </BrowserView> */}
+      <BrowserView>
         <div className="max-h-full min-h-screen max-w-full flex bg-backgroundWeb">
           {/* start body1 */}
           <div className="max-h-full w-[34%] bg-gradient-to-b from-trans2 to-trans3 hidden md:block">
@@ -316,7 +315,7 @@ function Start() {
                                   onClick={() => {
                                     if (!data?.nama) {
                                       alert(
-                                        "Mohon untuk menginput nama ruangan!"
+                                        "Mohon untuk mengisi nama ruangan!"
                                       );
                                       return null;
                                     }
@@ -404,7 +403,7 @@ function Start() {
           </div>
           {/* end body2 */}
         </div>
-      </MobileView>
+      </BrowserView>
     </>
   );
 }

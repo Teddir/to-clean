@@ -218,6 +218,7 @@ function Index() {
               let extData = datas?.data[1] ? datas?.data[1] : datas?.data[0];
               extData.status = datas.status;
               const myImage = hoverCard?.[index];
+              const myTitle = extData?.title?.length > 14 ? extData?.title.slice(0, 14) + '...' : extData?.title
               return (
                 <div
                   key={index}
@@ -254,8 +255,8 @@ function Index() {
                       />
                       <div className="text-center">
                         <div className="py-4">
-                          <span className="font-Pop font-semibold capitalize text-lg">
-                            {extData?.title}
+                          <span className="font-Pop font-semibold capitalize text-lg truncate">
+                            {myTitle}
                           </span>
                         </div>
                         <div>

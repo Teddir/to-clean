@@ -140,15 +140,15 @@ export const Button = ({ onPress, mode, disable, label, icon }) => {
   const textColor = [disable ? "text-border" : modeText];
   const cursorPointer = [disable ? "cursor-not-allowed" : "cursor-pointer"];
   const shadow = [disable ? "" : "hover:shadow-2xl"];
-  const styleButton = `xl:py-3 xl:px-6 py-2 px-3 justify-center items-center border-2 ${borderColor} flex ${cursorPointer} ${bgColor} ${textColor} ${shadow}`;
-  const styleButtonOutline = `xl:py-3 xl:px-6 py-2 px-3 justify-center items-center border-2 flex ${cursorPointer} ${borderColor} ${textColor} ${shadow}`;
+  const styleButton = `xl:py-3 xl:px-6 py-3 px-3 justify-center items-center border-2 ${borderColor} flex ${cursorPointer} ${bgColor} ${textColor} ${shadow}`;
+  const styleButtonOutline = `xl:py-3 xl:px-6 py-3 px-3 justify-center items-center border-2 flex ${cursorPointer} ${borderColor} ${textColor} ${shadow}`;
   const nilaiStyle = mode === "outline" ? styleButtonOutline : styleButton;
   return (
     <div
       className={`${nilaiStyle} xs:mb-4 duration-500`}
       onClick={() => (!disable && onPress ? onPress() : {})}
     >
-      {icon === "back" && (
+      {/* {icon === "back" && (
         <div className="pr-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -160,7 +160,7 @@ export const Button = ({ onPress, mode, disable, label, icon }) => {
             <path d="M7 16l-4-4m0 0l4-4m-4 4h18" />
           </svg>
         </div>
-      )}
+      )} */}
       <span className={`xl:text-[1rem] text-[11px] text-center items-center font-bold`}>{label}</span>
     </div>
   );
@@ -412,4 +412,13 @@ export function Modal() {
       <h1>ini modal</h1>
     </div>
   )
+}
+
+export function getTimePersonal(today) {
+  var dd = String(today.getDate()).padStart(2, "0");
+  var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  var yyyy = today.getFullYear();
+  
+  today = mm + "/" + dd + "/" + yyyy;
+  return today
 }

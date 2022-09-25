@@ -180,10 +180,10 @@ function Start() {
 
   return (
     <>
-      {/* <BrowserView>
-        <UiWeb />
-      </BrowserView> */}
       <BrowserView>
+        <UiWeb />
+      </BrowserView>
+      <MobileView>
         <div className="max-h-full min-h-screen max-w-full flex bg-backgroundWeb">
           {/* start body1 */}
           <div className="max-h-full w-[34%] bg-gradient-to-b from-trans2 to-trans3 hidden md:block">
@@ -236,7 +236,7 @@ function Start() {
                 </div>
                 {/* upload image */}
                 <div className="justify-between sm:block md:flex lg:flex mt-6">
-                  <div className="w-full grid sm:grid-cols-3 xs:grid-cols-1 xl:grid-cols-3 grid-cols-2">
+                  <div className="w-full xl:grid grid-cols-2">
                     {listCardImage?.map((data, index) => {
                       const hiddenIcon = [data?.url ? "opacity-0" : "flex"];
                       // console.log(hiddenIcon);
@@ -244,7 +244,7 @@ function Start() {
                       return (
                         <div
                           key={index}
-                          className="xl:mr-4 xl:mb-4 mt-6 items-center md:block lg:block "
+                          className="xl:pr-12 items-center md:block lg:block "
                         >
                           <div className="block justify-center pt-6">
                             <div className="flex-row flex w-full">
@@ -278,7 +278,7 @@ function Start() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="flex-col w-[80%]">
+                              <div className="flex-col w-[70%]">
                                 <div className="h-1/2 flex justify-between">
                                   <div className="w-[70%]">
                                     <h1 className="mb-1 text-[14px]">
@@ -291,7 +291,7 @@ function Start() {
                                       value={data?.nama}
                                     />
                                   </div>
-                                  <div className="w-[20%]">
+                                  <div className="w-[20%] cursor-pointer">
                                     <div
                                       className="flex py-2 items-center justify-center"
                                       onClick={() =>
@@ -343,7 +343,7 @@ function Start() {
                         </div>
                       );
                     })}
-                    <div className="xl:mr-4 xl:mb-4 mt-6 items-center md:block lg:block ">
+                    <div className="items-center">
                       <div
                         className="block justify-center pt-6 cursor-pointer"
                         onClick={() => handleAddListCard()}
@@ -403,7 +403,7 @@ function Start() {
           </div>
           {/* end body2 */}
         </div>
-      </BrowserView>
+      </MobileView>
     </>
   );
 }

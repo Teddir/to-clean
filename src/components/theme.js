@@ -419,7 +419,6 @@ export function getTimePersonal(today, format) {
   var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
   var yyyy = today.getFullYear();
   
-  todayLocal = mm + "/" + dd + "/" + yyyy;
-  today = dd + "/" + mm + "/" + yyyy;
-  return format === 'local' ? todayLocal : today
+  today = format === 'local' ? mm + "/" + dd + "/" + yyyy : dd + "/" + mm + "/" + yyyy;
+  return today
 }

@@ -168,7 +168,7 @@ function Start() {
             id: users?.id,
           };
           const response = await cleansCollection.add(datas);
-          navigation(`/tora/user/finish/${response.id}`);
+          navigation(`/tora`);
           setLoadSubmit(false);
         }
       });
@@ -393,7 +393,7 @@ function Start() {
                   onPress={() => navigation("/tora")}
                 />
                 <Button
-                  label={loadSubmit ? "Loading..." : "Lanjutkan"}
+                  label={loadSubmit ? "Loading..." : "Upload"}
                   onPress={handleSubmit}
                   disable={loadSubmit ? true : false}
                 />

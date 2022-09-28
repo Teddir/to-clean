@@ -80,8 +80,8 @@ function Start() {
     if (files) {
       if (files.length !== 0) {
         const file = files[0];
-        if (file.size >= 1000000) {
-          return alert(`file anda ${file.size} terlalu besar > 1MB`);
+        if (file.size >= 2000000) {
+          return alert(`file anda ${file.size} terlalu besar > 2MB`);
         }
         const newUrl = URL.createObjectURL(file);
         setListCardImage((datas) => {
@@ -261,7 +261,7 @@ function Start() {
                                     !fetchedUrl
                                       ? "border-border"
                                       : "border-c0 shadow-md"
-                                  } flex flex-col h-[8rem] w-[8rem] mb-4 border-2 border-opacity-30 rounded-md items-center justify-center z-10`}
+                                  } flex flex-col h-[6rem] w-[6rem] mb-4 border-2 border-opacity-30 rounded-md items-center justify-center z-10`}
                                 >
                                   {/* <img alt="haha" src={fetchedUrl} /> */}
                                   <div className={`${hiddenIcon} z-0`}>
@@ -278,14 +278,14 @@ function Start() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="flex-col w-[70%]">
+                              <div className="w-[70%]">
                                 <div className="h-1/2 flex justify-between">
-                                  <div className="w-[70%]">
+                                  <div>
                                     <h1 className="mb-1 text-[14px]">
                                       Nama Ruangan
                                     </h1>
                                     <input
-                                      className="text-[16px] lg:text-[18px] font-[500] font-sans placeholder:opacity-50 bg-transparent focus:outline-none"
+                                      className="text-[16px] lg:text-[18px] font-[500] font-sans placeholder:opacity-50 bg-transparent focus:outline-none w-[100%]"
                                       placeholder="input nama ruangan"
                                       onChange={handleChange(data)}
                                       value={data?.nama}
@@ -328,12 +328,12 @@ function Start() {
                                     disabled={!data?.nama}
                                     onChange={handleCapture(data)}
                                     type="file"
-                                    className="block w-auto text-sm text-slate-500 
+                                    className="block text-sm text-slate-500 
                                   file:mr-4 file:py-2 file:px-4
                                   file:rounded-full file:border-0
                                   file:text-sm file:font-semibold
                                   file:bg-violet-50 file:text-violet-700
-                                  hover:file:bg-violet-100
+                                  hover:file:bg-violet-100 w-[100%]
                                 "
                                   />
                                 </div>
@@ -349,9 +349,9 @@ function Start() {
                         onClick={() => handleAddListCard()}
                       >
                         <div className="flex flex-row">
-                          <div className="mr-4">
+                          <div className="mr-4 w-[30%]">
                             <div
-                              className="flex h-[8rem] w-[8rem] mb-4 bg-transparent border-border opacity-80 border-2 border-opacity-30 rounded-md items-center justify-center bg-cover"
+                              className="flex h-[6rem] w-[6rem] mb-4 bg-transparent border-border opacity-80 border-2 border-opacity-30 rounded-md items-center justify-center bg-cover"
                               id="display-image"
                             >
                               <div className="flex">
@@ -367,7 +367,7 @@ function Start() {
                               </div>
                             </div>
                           </div>
-                          <div className="cursor-pointer">
+                          <div className="cursor-pointer w-[70%]">
                             <label className="text-[14px] font-[500] font-sans opacity-50">
                               Tambah Ruangan
                             </label>

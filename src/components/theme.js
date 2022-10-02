@@ -182,7 +182,7 @@ export const SideBarProcess = ({ numberProcess, title }) => {
               <div className={"mb-4"}>
                 <div className={`h-[50%]`}>
                   <span
-                    className={`text-white text-[36px] xl:text-[46px] font-serif font-bold`}
+                    className={`text-white md:text-[44px] font-serif font-bold`}
                   >
                     {title}
                   </span>

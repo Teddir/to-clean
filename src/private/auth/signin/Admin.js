@@ -3,9 +3,11 @@ import {
   auth,
   firefunctions,
 } from "../../../components/firebase/FirebaseProvider";
-import logo from "../../../src/svg/logoWhite.svg";
+import logoWhite from "../../../src/svg/logoWhite.svg";
+import logoBlack from "../../../src/svg/logoBlack.svg";
 import { useNavigate } from "react-router-dom";
 import { Button, MiniSideBarProcess } from "../../../components/theme";
+import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
 
 function AdminAuth() {
   const navigation = useNavigate();
@@ -103,11 +105,15 @@ function AdminAuth() {
   return (
     <div className="max-w-screen-2xl min-h-screen flex bg-backgroundWeb">
       {/* start body1 */}
-      <div className="max-h-full w-[34%] bg-gradient-to-b from-trans2 to-trans3 hidden md:block">
-        <div className="w-full mx-12 mt-4 pb-12">
+      <div className="max-h-full w-[30%] bg-gradient-to-b from-trans2 to-trans3 hidden md:block">
+        <div className="w-full mx-12">
           {/* logo */}
-          <div className="flex justify-between items-center">
-            <img src={logo} className="App-logo h-24 w-24" alt="logo" />
+          <div
+            className="flex items-center cursor-pointer"
+            onClick={() => navigation("/tora/role")}
+          >
+            <ArrowLongLeftIcon className="w-12 h-12 mr-2 " color="white" />
+            <img src={logoWhite} className="App-logo h-24 w-24" alt="logo" />
           </div>
           {/* desc */}
           <div className="w-[80%] lg:w-[90%] mt-24">
@@ -130,18 +136,15 @@ function AdminAuth() {
       </div>
       {/* end body1 */}
       {/* start body2 */}
-      <div className="max-h-full">
-        <div className="lg:ml-32 ml-12 mr-12 mt-8 lg:mt-4 pb-12">
+      <div className="max-h-full md:w-[66%] ">
+        <div className="md:ml-24 ml-6 mr-6 mt-4">
           {/* start nav */}
-          <div className="flex justify-between items-center">
-            <div className="bg-trans1 p-2 rounded-xl md:opacity-0 lg:opacity-0">
-              <img
-                src={logo}
-                className="App-logo h-16 w-16 lg:h-24 lg:w-24"
-                alt="logo"
-              />
+          <div className="flex justify-between items-center md:mt-12">
+            <div className="flex items-center cursor-pointer md:hidden " onClick={() => navigation('/tora/role')}>
+              <ArrowLongLeftIcon className="w-12 h-12 mr-2" />
+              <img src={logoBlack} className="App-logo h-16 w-16" alt="logo" />
             </div>
-            <div className="items-center">
+            <div className="items-center md:block hidden">
               <h1 className="textDesc font-mono text-right">
                 “Ingat kebersihan membuahkan kesehatan.”
               </h1>
@@ -149,15 +152,15 @@ function AdminAuth() {
           </div>
           {/* end nav */}
           {/* start body */}
-          <div className="mt-24 xl:mt-18">
+          <div className="md:mt-32 mt-12 md:w-[80%]">
             <MiniSideBarProcess status={"admin"} />
             <div className="pt-4 md:pt-0">
-              <span className="textJudul">
+              <span className="font-bold md:text-[28px] text-[34px] md:leading-none leading-9">
                 Hallo Admin Tokorame semoga <br /> sehat selalu 😊.
               </span>
             </div>
             <div className="xl:mt-6 mt-4">
-              <span className="textDesc">
+              <span className="md:text-[18px] text-[24px]">
                 data yang dimasukkan harus sesuai dengan data yang telah
                 terdaftar!!
               </span>
@@ -207,14 +210,8 @@ function AdminAuth() {
         </div>
         {/* end body */}
         {/* start button */}
-        <div className="bottom-0 xl:mt-12 py-6">
-          <div className="lg:flex md:flex sm:flex justify-between relative lg:ml-32 ml-12 mr-12 mt-8 lg:mt-4 pb-12">
-            <Button
-              label={"Kembali"}
-              icon="back"
-              mode={"outline"}
-              onPress={() => navigation("/tora/role")}
-            />
+        <div className="bottom-0 xl:mt-12 py-6 md:ml-24 ml-6">
+          <div className="lg:flex md:flex sm:flex justify-between relative">
             <Button
               label={loadingSubmit ? "Loading.." : "Lanjutkan"}
               onPress={() => handleSubmit()}

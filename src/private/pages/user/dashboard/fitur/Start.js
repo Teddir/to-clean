@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../../../../src/svg/logoBlack.svg";
 import { useNavigate } from "react-router-dom";
-import { Button, SideBarProcess } from "../../../../../components/theme";
+import Button from "@mui/material/Button";
+import { SideBarProcess } from "../../../../../components/theme";
 import {
   FieldValue,
   storage,
@@ -321,7 +322,8 @@ function Start() {
                                     }
                                   }}
                                 >
-                                  <input
+                                  {/* <input
+                                    hidden
                                     accept="image/jpeg,image/png,image/jpg"
                                     id="icon-button-file"
                                     capture="environment"
@@ -335,7 +337,19 @@ function Start() {
                                   file:bg-violet-50 file:text-violet-700
                                   hover:file:bg-violet-100 w-[100%]
                                 "
-                                  />
+                                  /> */}
+                                  <Button variant="contained" component="label">
+                                    Upload
+                                    <input
+                                      hidden
+                                      accept="image/jpeg,image/png,image/jpg"
+                                      id="icon-button-file"
+                                      capture="environment"
+                                      disabled={!data?.nama}
+                                      onChange={handleCapture(data)}
+                                      type="file"
+                                    />
+                                  </Button>
                                 </div>
                               </div>
                             </div>
@@ -387,16 +401,18 @@ function Start() {
             <div className="bottom-0 ">
               <div className="xs:block flex justify-between relative lg:ml-32 mx-8 mt-8 lg:mt-4 pb-12">
                 <Button
-                  label={"Kembali"}
-                  icon="back"
-                  mode={"outline"}
-                  onPress={() => navigation("/tora")}
-                />
+                  onClick={() => navigation("/tora")}
+                  variant="contained" component="label"
+                >
+                  Kembali
+                </Button>
                 <Button
-                  label={loadSubmit ? "Loading..." : "Upload"}
-                  onPress={handleSubmit}
-                  disable={loadSubmit ? true : false}
-                />
+                  onClick={handleSubmit}
+                  disabled={loadSubmit ? true : false}
+                  variant="contained" component="label"
+                >
+                  {loadSubmit ? "Loading..." : "Upload"}
+                </Button>
               </div>
             </div>
             {/* end button */}
